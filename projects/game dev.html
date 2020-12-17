@@ -1,0 +1,76 @@
+<head>
+    <title>Miguel SE | </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.social.css">
+    <script src="https://kit.fontawesome.com/3caeb7c332.js" crossorigin="anonymous"></script>
+    <script src="../template/template.js"></script>
+    <link rel="icon" href="favicon.ico" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="game dev.js"></script> -->
+</head>
+
+<body>
+    <img src="data:image/jpeg;base64,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"
+        id='background'>
+
+    <div id="header">
+        <a class="header-link" href="mailto: msandlerespi@umass.edu">contact</a>
+        <a class="header-link" href="Miguel Sandler-Espinosa Resume.pdf" target="_blank">resume</a>
+        <a href="../index.html" class="header-link">miguel<span id="period">.</span></a>
+    </div>
+
+    <h1 class="project-title platform">Game Development</h1>
+    <h3 class="project-desc platform">I love making games. Although I haven't made many, the creative process brings me
+        a lot of joy, especially when working with others. I plan to participate in more Game Jams to develop my skills
+        and expand my community of game developers.</h3>
+
+    <div class="row">
+        <div class="col-auto">
+            <iframe id="tenten-container" src="tenten.html"></iframe>
+        </div>
+        <div class="col">
+            <a name="1010!"></a>
+            <br>
+            <h3 class="project-header">1010! Remake</h3>
+            <br>
+            <br>
+            <h3 class="project-desc" style="padding-left: 0px !important;">
+                My remake of the popular phone game 1010! using all custom assets I made besides the font.
+                <br>
+                <a class="header-link" href="programmer.html#1010!"
+                    style="font-size: 30px !important; font-weight: normal;">Learn
+                    more
+                </a>
+            </h3>
+        </div>
+    </div>
+
+    <div class="social-buttons">
+        <a href="https://www.linkedin.com/in/miguel-sandler-espinosa-1290251b0/"
+            class="social-buttons__button social-button social-button--linkedin" target="_blank" aria-label="LinkedIn">
+            <span class="social-button__inner">
+                <i class="fab fa-linkedin-in"></i>
+            </span>
+        </a>
+        <a href="https://github.com/msandlerespi" class="social-buttons__button social-button social-button--github"
+            target="_blank" aria-label="GitHub">
+            <span class="social-button__inner">
+                <i class="fab fa-github"></i>
+            </span>
+        </a>
+        <a href="mailto: msandlerespi@umass.edu" class="social-buttons__button social-button social-button--mail"
+            target="_blank" aria-label="Email">
+            <span class="social-button__inner">
+                <i class="far fa-envelope"></i>
+            </span>
+        </a>
+    </div>
+</body>
