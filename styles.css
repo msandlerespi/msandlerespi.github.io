@@ -117,7 +117,7 @@ body.no-scroll{
 #header{ 
     padding: 36px;  
     position: relative;
-    left: -182px;
+    left: -184px;
     transition: left .4s ease;
     z-index: 100000;
 }
