@@ -1,4 +1,4 @@
-let drags = ['programmer', 'designer', 'game dev', 'hobbyist', 'musician'];
+let drags = ['programmer', 'designer', 'game dev', 'student', 'musician'];
 document.addEventListener('DOMContentLoaded', () => {
 
     drags.forEach(drag => {
