@@ -1,0 +1,53 @@
+* {
+    font-size: 30px;
+    font-family: monospace;
+}
+
+body{
+    background-image: url("https://images4.alphacoders.com/962/962060.png");
+    background-size: cover;
+    padding: 30px;
+}
+.flipper-page{
+    background-color: #EEEEEE66;
+    padding: 30px;
+    margin: 50px, 50px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 10px;
+}
+.flipper-image{
+    display: inline;
+    border: 10px solid #66666666;
+}
+.flipper-name{
+    display: inline-block;
+}
+.flipper-link{
+    display: block;
+    font-weight: bold;
+}
+.flipper-desc{
+    grid-column-start: 2;
+    grid-column-end: 6;
+}
+input{
+    padding: 10px;
+    background-color: #EEEEEE66;
+    border: none;
+    outline: none;
+}
+input:active{
+    border: none;
+    outline: none;
+}
+button{
+    border-radius: 5px;
+    background-color: #AAAAAA66;
+    border: none;
+    padding: 10px;
+}
+button:hover{
+    background-color: #EEEEEE66;
+    cursor: pointer;
+}
