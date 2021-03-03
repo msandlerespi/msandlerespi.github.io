@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("go").onclick = () => {
         document.getElementById("search").style.display = "none";
         document.getElementById("loading").style.display = "block";
+        let b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63 = "74418fdb18mshf567414d0f20e5ep18b44fjsnbd0d0e8e60e0";
         let increaseValue = document.getElementById("increase-value").value;
         let increaseType = document.getElementById("increase-type").value;
         let numYears = document.getElementById("years").value;
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch(`https://realtor.p.rapidapi.com/properties/v2/list-sold?offset=0&limit=500&postal_code=${zipcode}&prop_type=single_family%2C%20multi_family&sort=sold_date`, {
                 "method": "GET",
                 "headers": {
-                    "x-rapidapi-key": "74418fdb18mshf567414d0f20e5ep18b44fjsnbd0d0e8e60e0",
+                    "x-rapidapi-key": b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63,
                     "x-rapidapi-host": "realtor.p.rapidapi.com"
                 }
             })
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(result => {
                 let flippers = [];
                 let year = parseInt(new Date().getFullYear());
-                let max = 1;
+                let max = 100;
                 function search(i) {
                     if(i >= max || i >= result.properties.length) {
                         finished();
