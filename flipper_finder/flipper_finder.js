@@ -1,6 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("go").onclick = () => {
+        document.getElementById("search").style.display = "none";
+        document.getElementById("loading").style.display = "block";
         let zipcode = document.getElementById("zipcode").value;
         fetch(`https://realtor.p.rapidapi.com/properties/v2/list-sold?offset=0&limit=500&postal_code=${zipcode}&prop_type=single_family%2C%20multi_family&sort=sold_date`, {
             "method": "GET",
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             function finished() {
                 console.log("done!");
                 console.log(flippers);
-                document.getElementById("search").style.display = "none";
+                document.getElementById("loading").style.display = "none";
                 let results = document.getElementById("results");
                 results.style.display = "block";
                 flippers.forEach(flipper => {
