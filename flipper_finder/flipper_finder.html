@@ -19,6 +19,10 @@
             <label for="zipcode">Zip Code:</label>
             <input id="zipcode" name="zipcode" placeholder="01234" aria-placeholder="01234"/>
             <button id="go">Find Flippers</button>
+            <details style="margin-top: 50px;">
+                <summary>Advanced</summary>
+                Find sellers who bought and resold their house within <input id="years" type="number" value="2"> years for a profit of <select id="increase-type"><option value="$">$</option><option value="%">%</option></select><input id="increase-value" type="number" value="100000"> or more.
+            </details>
         </div>
         <div id="loading" style="display: none;">
             Searching...</br>
