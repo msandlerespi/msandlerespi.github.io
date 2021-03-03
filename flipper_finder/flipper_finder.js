@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("go").onclick = () => {
         document.getElementById("search").style.display = "none";
         document.getElementById("loading").style.display = "block";
-        let b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63 = "74418fdb18mshf567414d0f20e5ep18b44fjsnbd0d0e8e60e0";
         let increaseValue = document.getElementById("increase-value").value;
         let increaseType = document.getElementById("increase-type").value;
         let numYears = document.getElementById("years").value;
