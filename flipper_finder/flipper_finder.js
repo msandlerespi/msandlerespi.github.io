@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             fetch(`https://realtor.p.rapidapi.com/properties/v2/detail?property_id=${property.property_id}`, {
                                 "method": "GET",
                                 "headers": {
-                                    "x-rapidapi-key": "74418fdb18mshf567414d0f20e5ep18b44fjsnbd0d0e8e60e0",
+                                    "x-rapidapi-key": b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63,
                                     "x-rapidapi-host": "realtor.p.rapidapi.com"
                                 }
                             })
