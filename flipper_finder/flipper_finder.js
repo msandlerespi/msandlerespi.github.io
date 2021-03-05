@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    let b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63 = "74418fdb18mshf567414d0f20e5ep18b44fjsnbd0d0e8e60e0";
+    let b788521adg99953mnjhj31lll35bvhvj1n3bnbj6l41ln63 = "8bc7784376mshadfa3d8b81f0532p14b586jsnd9c7109f9bc8";
     document.getElementById("go").onclick = () => {
         document.getElementById("search").style.display = "none";
         document.getElementById("loading").style.display = "block";
