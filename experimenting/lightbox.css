@@ -1,0 +1,46 @@
+#box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .6);
+    padding: 0, 70px;
+    transition: all 1s ease;
+}
+#box.opened{
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90vh;
+}
+iframe{
+    opacity: 0;
+    pointer-events: none;
+    margin: auto;
+    border: none;
+    margin-top: 100px;
+    display: block;
+    transition: opacity .3s ease;
+}
+iframe.opened{
+    opacity: 100%;
+    pointer-events: auto;
+}
+#exit{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 50px;
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+    cursor: default;
+}
+#exit.opened {
+    opacity: 100;
+    pointer-events: auto;
+    cursor: pointer;
+}
