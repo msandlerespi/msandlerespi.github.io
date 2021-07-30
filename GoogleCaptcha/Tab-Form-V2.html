@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("form").submit();
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+        :root{
+            --tabs-width: 150px;
+        }
+        body{
+            margin: 0;
+            background: #f3dddb;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* Tabs Name Container */
+        .tabs-container{
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #fff;
+            width: var(--tabs-width);
+            height: 100vh;
+            float: left;
+            z-index: 20;
+        }
+        /* Tabs Names Label */
+        .tabs-container label{
+            margin-left: 10px;
+            position: relative;
+            padding: 10px;
+            display: block;
+            font-size: 15px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color .2s;
+        }
+
+        /* .tabs-container label .circle{
+            position: absolute;
+            left: -4px;
+            border-radius: 50%;
+            background: blue;
+            width: 10px;
+            height: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        } */
+        
+        /* Hover effect on tabs names */
+        .tabs-container label:hover{
+            background: rgba(0, 0, 0, 0.05);
+        }
+        /* Content area for tabs */
+        .tab-content{
+            position: absolute;
+            background: #fff;
+            width: calc(0.5 * (100% - var(--tabs-width)));
+            box-sizing: border-box;
+            z-index: 19;
+            opacity: 0;
+            height: 90%;
+            top: 5%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .tab-header{
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            background: #5a79da;
+            margin: 0;
+            color: white;
+        }
+        .tab-fill {
+            width: auto;
+            height: 100%;
+            padding: 50px;
+        }
+        .centered{
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        .col2 {
+            display: grid;
+            gap: 0;
+            grid-template-columns: auto auto;
+            height: 100%;
+        }
+        .col2 > div{
+            padding: 50px 0 50px 50px !important; 
+            width: 50% !important;
+        }
+        .col2 > div:nth-child(1) {
+            grid-column: 1;
+        }
+        .col2 > div:nth-child(2) {
+            grid-column: 2;
+        }
+        .tab-fill label {
+            display: inline-block;
+        }
+        .tab-fill input, .tab-fill button{
+            padding: 8px;
+            border-radius: 8px;
+            border: 3px solid #0003;
+            margin: 10px 0;
+            display: inline-block;
+            font-family: inherit;
+            width: auto;
+            transition: border .3s;
+        }
+        button {
+            cursor: pointer;
+        }
+        .tab-fill input:hover,
+        .tab-fill input:focus,
+        .tab-fill button:hover {
+            outline: none;
+            border: 3px solid #0005;
+        }
+
+
+        /* Hide input radio from users */
+        input[name="tab"]{
+            display: none;
+        }
+        /* Show tab when input checked */
+        input[name="tab"]:checked + .tab-content{
+            animation: slide 1s forwards;
+        }
+        input[name="tab"]:not(:checked) + .tab-content{
+            animation: slide-out 1s forwards;
+        }
+        /* Slide animation for tab contents */
+        @keyframes slide{
+            from{
+                left: -100%;
+                opacity: 0;
+                box-shadow: #0003 0 0 0 0;
+            }
+            to{
+                left: calc(0.25 * (100% - var(--tabs-width)) + var(--tabs-width));
+                opacity: 1;
+                box-shadow: #0003 -20px 20px 0 0;
+            }
+        }
+        @keyframes slide-out{
+            from{
+                left: calc(0.25 * (100% - var(--tabs-width)) + var(--tabs-width));
+                opacity: 1;
+                box-shadow: #0003 -20px 20px 0 0;
+            }
+            to{
+                left: 100%;
+                opacity: 0;
+                box-shadow: #0003 0 0 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <form id="form">
+        <label for=''>Name: </label>
+        <input type='text'>
+        <button class="g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'>Submit</button>
+    </form> -->
+    <section class="tabs-container">
+        <label for="tab-1"> First Tab </label>
+        <label for="tab-2"> Second Tab </label>
+        <label for="tab-3"> Third Tab </label>
+    </section>
+    <input name="tab" id="tab-1" type="radio" checked />
+    <section class="tab-content">
+        <h1 class="tab-header">Tab 1 Content</h1>
+        <div class="col2">
+            <div class="tab-fill">
+                <label for="input-fname">First Name: </label>
+                <input type="text" id="input-fname"/>
+                <br>
+                <label for="input-DOB">Date of Birth: </label>
+                <input type="date" id="input-DOB"/>
+                <br>
+                
+            </div>
+            <div class="tab-fill">
+                <label for="input-lname">Last Name: </label>
+                <input type="text" id="input-lname"/>
+            </div>
+        </div>
+    </section>
+    <input name="tab" id="tab-2" type="radio" />
+    <section class="tab-content">
+        <h1 class="tab-header">Tab 2 Content</h1>
+        <div class="tab-fill">
+            I like...
+            <br>
+            <input id="cookies" type="checkbox">
+            Cookies
+            <br>
+            <input id="cake" type="checkbox">
+            Cake
+            <br>
+            <input id="brownies" type="checkbox">
+            Brownies
+            <br>
+            <input id="icecream" type="checkbox">
+            Ice Cream
+        </div>
+    </section>
+    <input name="tab" id="tab-3" type="radio" />
+    <section class="tab-content">
+        <h1 class="tab-header">Tab 3 Content</h1>
+        <div class="tab-fill" style="text-align: center;">
+            I certify that I am a real human and that all my answers were true.
+            <button class="g-recaptcha" data-sitekey="6LdGrc4bAAAAAG5T9PMia9Hq3BtEbm5kPshWUOP0" data-callback='onSubmit' data-action='submit'>Submit</button>
+        </div>
+    </section>
+</body>
+</html>
