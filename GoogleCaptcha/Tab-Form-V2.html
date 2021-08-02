@@ -10,9 +10,9 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <!-- Sheets/Captcha js -->
     <script>
-        var form = document.getElementById('form');
-        var url = 'https://script.google.com/macros/s/AKfycbxYpDKk0EdR1bJbGaGoFsnAoUU9xTCp7osr_zMjnzxqSOw4PHaAKBRVk229fRyW-cG87Q/exec';
         function onSubmit(token) {
+            var form = document.getElementById('form');
+            var url = 'https://script.google.com/macros/s/AKfycbxYpDKk0EdR1bJbGaGoFsnAoUU9xTCp7osr_zMjnzxqSOw4PHaAKBRVk229fRyW-cG87Q/exec';
             console.log('hi!');
             fetch(url, {
                 method: 'POST',
