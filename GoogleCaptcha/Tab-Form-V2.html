@@ -1,4 +1,4 @@
-<!-- Using the tutorial: https://github.com/jamiewilson/form-to-google-sheets -->
+<!-- Using the tutorial: https://lovekesh.tech/how-to-send-html-form-data-to-google-sheets/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,34 +8,31 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <!-- Polyfills. Not really sure what they do, but supposedly they are necessary -->
-    <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
-    <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
-    <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
     <!-- Sheets/Captcha js -->
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwz__y3ztnMMbshGhM2q5_LR78rNEU2M_dT9ORHYCRIGSOkpucdGAse8AOV4jIHB427kA/exec';
-        const form = document.getElementById('form');
-
-        // var $form = $('form#form'),
-        // url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
+        var form = document.getElementById('form');
+        var url = 'https://script.google.com/macros/s/AKfycbxYpDKk0EdR1bJbGaGoFsnAoUU9xTCp7osr_zMjnzxqSOw4PHaAKBRVk229fRyW-cG87Q/exec';
         function onSubmit(token) {
-            // console.log('hi!');
-            // var jqxhr = $.ajax({
-            //     url: url,
-            //     method: "GET",
-            //     dataType: "json",
-            //     data: $form.serializeObject()
-            // }).success(
-            //     () => {console.log("it worked! hopefully heh");}
-            // );
-            
-            form.addEventListener('submit', e => {
-                e.preventDefault()
-                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-            });
+            fetch(url, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(res => {
+                console.log(res);
+                if (res['status'] == 200) {
+                    swal("Your form has been submitted!",
+                        "We will get back to you soon. Have a great day!", "success");
+                    return true;
+
+                } else {
+                    swal("Something went wrong!", "Please try after some time", "error");
+
+                }
+            })
+            .catch(error => {
+                swal("Something went wrong!", "Please try after some time", "error");
+                // todo enable submit button
+            })
         }
     </script>
     <style>
@@ -200,16 +197,16 @@
             <div class="col2">
                 <div class="tab-fill">
                     <label for="fname">First Name: </label>
-                    <input name="first name" type="text" id="fname"/>
+                    <input name="fname" type="text" id="fname"/>
                     <br>
                     <label for="DOB">Date of Birth: </label>
-                    <input name="date of birth" type="date" id="DOB"/>
+                    <input name="DOB" type="date" id="DOB"/>
                     <br>
                     
                 </div>
                 <div class="tab-fill">
                     <label for="lname">Last Name: </label>
-                    <input name="last name" type="text" id="lname"/>
+                    <input name="lname" type="text" id="lname"/>
                 </div>
             </div>
         </section>
@@ -228,7 +225,7 @@
                 <input name="brownies" id="brownies" type="checkbox">
                 Brownies
                 <br>
-                <input name="ice cream" id="icecream" type="checkbox">
+                <input name="icecream" id="icecream" type="checkbox">
                 Ice Cream
             </div>
         </section>
