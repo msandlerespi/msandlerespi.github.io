@@ -13,6 +13,7 @@
         var form = document.getElementById('form');
         var url = 'https://script.google.com/macros/s/AKfycbxYpDKk0EdR1bJbGaGoFsnAoUU9xTCp7osr_zMjnzxqSOw4PHaAKBRVk229fRyW-cG87Q/exec';
         function onSubmit(token) {
+            console.log('hi!');
             fetch(url, {
                 method: 'POST',
                 body: new FormData(form)
