@@ -12,6 +12,7 @@
         var $form = $('form#test-form'),
             url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
         function onSubmit(token) {
+            console.log('hi!');
             var jqxhr = $.ajax({
                 url: url,
                 method: "GET",
