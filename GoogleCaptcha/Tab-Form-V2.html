@@ -12,7 +12,7 @@
     <script>
         function onSubmit(token) {
             var form = document.getElementById('form');
-            var url = 'https://script.google.com/macros/s/AKfycbxYpDKk0EdR1bJbGaGoFsnAoUU9xTCp7osr_zMjnzxqSOw4PHaAKBRVk229fRyW-cG87Q/exec';
+            var url = 'https://script.google.com/macros/s/AKfycbwz__y3ztnMMbshGhM2q5_LR78rNEU2M_dT9ORHYCRIGSOkpucdGAse8AOV4jIHB427kA/exec';
             console.log('hi!');
             fetch(url, {
                 method: 'POST',
@@ -21,17 +21,17 @@
             .then(res => {
                 console.log(res);
                 if (res['status'] == 200) {
-                    swal("Your form has been submitted!",
+                    alert("Your form has been submitted!",
                         "We will get back to you soon. Have a great day!", "success");
                     return true;
 
                 } else {
-                    swal("Something went wrong!", "Please try after some time", "error");
+                    alert("Something went wrong!", "Please try after some time", "error");
 
                 }
             })
             .catch(error => {
-                swal("Something went wrong!", "Please try after some time", "error");
+                alert("Something went wrong!", "Please try after some time", "error");
                 // todo enable submit button
             })
         }
