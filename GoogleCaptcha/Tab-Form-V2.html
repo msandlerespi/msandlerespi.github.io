@@ -8,19 +8,34 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <!-- Polyfills. Not really sure what they do, but supposedly they are necessary -->
+    <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+    <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+    <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+    <!-- Sheets/Captcha js -->
     <script>
-        var $form = $('form#form'),
-            url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwz__y3ztnMMbshGhM2q5_LR78rNEU2M_dT9ORHYCRIGSOkpucdGAse8AOV4jIHB427kA/exec';
+        const form = document.getElementById('form');
+
+        // var $form = $('form#form'),
+        // url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
         function onSubmit(token) {
-            console.log('hi!');
-            var jqxhr = $.ajax({
-                url: url,
-                method: "GET",
-                dataType: "json",
-                data: $form.serializeObject()
-            }).success(
-                () => {console.log("it worked! hopefully heh");}
-            );
+            // console.log('hi!');
+            // var jqxhr = $.ajax({
+            //     url: url,
+            //     method: "GET",
+            //     dataType: "json",
+            //     data: $form.serializeObject()
+            // }).success(
+            //     () => {console.log("it worked! hopefully heh");}
+            // );
+            
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+            });
         }
     </script>
     <style>
