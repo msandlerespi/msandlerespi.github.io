@@ -1,3 +1,4 @@
+<!-- Using the tutorial: https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
+        var $form = $('form#test-form'),
+            url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
         function onSubmit(token) {
-            document.getElementById("form").submit();
+            var jqxhr = $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "json",
+                data: $form.serializeObject()
+            }).success(
+                // do something
+            );
         }
     </script>
     <style>
@@ -46,17 +57,6 @@
             transition: background-color .2s;
         }
 
-        /* .tabs-container label .circle{
-            position: absolute;
-            left: -4px;
-            border-radius: 50%;
-            background: blue;
-            width: 10px;
-            height: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        } */
-        
         /* Hover effect on tabs names */
         .tabs-container label:hover{
             background: rgba(0, 0, 0, 0.05);
@@ -172,61 +172,58 @@
     </style>
 </head>
 <body>
-    <!-- <form id="form">
-        <label for=''>Name: </label>
-        <input type='text'>
-        <button class="g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'>Submit</button>
-    </form> -->
     <section class="tabs-container">
         <label for="tab-1"> First Tab </label>
         <label for="tab-2"> Second Tab </label>
         <label for="tab-3"> Third Tab </label>
     </section>
-    <input name="tab" id="tab-1" type="radio" checked />
-    <section class="tab-content">
-        <h1 class="tab-header">Tab 1 Content</h1>
-        <div class="col2">
-            <div class="tab-fill">
-                <label for="input-fname">First Name: </label>
-                <input type="text" id="input-fname"/>
-                <br>
-                <label for="input-DOB">Date of Birth: </label>
-                <input type="date" id="input-DOB"/>
-                <br>
-                
+    <form id="form">
+        <input name="tab" id="tab-1" type="radio" checked />
+        <section class="tab-content">
+            <h1 class="tab-header">Tab 1 Content</h1>
+            <div class="col2">
+                <div class="tab-fill">
+                    <label for="fname">First Name: </label>
+                    <input name="first name" type="text" id="fname"/>
+                    <br>
+                    <label for="DOB">Date of Birth: </label>
+                    <input name="date of birth" type="date" id="DOB"/>
+                    <br>
+                    
+                </div>
+                <div class="tab-fill">
+                    <label for="lname">Last Name: </label>
+                    <input name="last name" type="text" id="lname"/>
+                </div>
             </div>
+        </section>
+        <input name="tab" id="tab-2" type="radio" />
+        <section class="tab-content">
+            <h1 class="tab-header">Tab 2 Content</h1>
             <div class="tab-fill">
-                <label for="input-lname">Last Name: </label>
-                <input type="text" id="input-lname"/>
+                I like...
+                <br>
+                <input name="cookies" id="cookies" type="checkbox">
+                Cookies
+                <br>
+                <input name="cake" id="cake" type="checkbox">
+                Cake
+                <br>
+                <input name="brownies" id="brownies" type="checkbox">
+                Brownies
+                <br>
+                <input name="ice cream" id="icecream" type="checkbox">
+                Ice Cream
             </div>
-        </div>
-    </section>
-    <input name="tab" id="tab-2" type="radio" />
-    <section class="tab-content">
-        <h1 class="tab-header">Tab 2 Content</h1>
-        <div class="tab-fill">
-            I like...
-            <br>
-            <input id="cookies" type="checkbox">
-            Cookies
-            <br>
-            <input id="cake" type="checkbox">
-            Cake
-            <br>
-            <input id="brownies" type="checkbox">
-            Brownies
-            <br>
-            <input id="icecream" type="checkbox">
-            Ice Cream
-        </div>
-    </section>
-    <input name="tab" id="tab-3" type="radio" />
-    <section class="tab-content">
-        <h1 class="tab-header">Tab 3 Content</h1>
-        <div class="tab-fill" style="text-align: center;">
-            I certify that I am a real human and that all my answers were true.
-            <button class="g-recaptcha" data-sitekey="6LdGrc4bAAAAAG5T9PMia9Hq3BtEbm5kPshWUOP0" data-callback='onSubmit' data-action='submit'>Submit</button>
-        </div>
-    </section>
+        </section>
+        <input name="tab" id="tab-3" type="radio" />
+        <section class="tab-content">
+            <h1 class="tab-header">Tab 3 Content</h1>
+            <div class="tab-fill" style="text-align: center;">
+                I certify that I am a real human and that all my answers were true.
+                <button class="g-recaptcha" data-sitekey="6LdGrc4bAAAAAG5T9PMia9Hq3BtEbm5kPshWUOP0" data-callback='onSubmit' data-action='submit'>Submit</button>
+            </div>
+        </section>
+    </form>
 </body>
 </html>
