@@ -1,4 +1,4 @@
-<!-- Using the tutorial: https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175 -->
+<!-- Using the tutorial: https://github.com/jamiewilson/form-to-google-sheets -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-        var $form = $('form#test-form'),
+        var $form = $('form#form'),
             url = 'https://script.google.com/macros/s/AKfycbwHjRoC0QUzrOOoJWhKEpb_4pfZ4lSeNnVZJ4ubcGVTuzZyHgtAk4Ymog8m3AksUel9EA/exec';
         function onSubmit(token) {
             console.log('hi!');
