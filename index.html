@@ -1,63 +1,1657 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script data-ad-client="ca-pub-6466804076619031" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <title>Miguel SE | Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
-    <script src="home.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles.social.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://kit.fontawesome.com/3caeb7c332.js" crossorigin="anonymous"></script>
-    <script src="template/template.js"></script>
-    <link rel="icon" href="favicon.ico" />
-    <meta name="keywords" content="Miguel Sandler-Espinosa">
+    <!-- too lazy to add to the main script, its the bubble code -->
+    <script>
+        var bubbles = [];
+        var bubbleWidth = 100;
+        var bubbleContainer;
+        document.addEventListener('DOMContentLoaded', () => {
+            bubbleContainer = document.getElementsByClassName('bubbles-container')[0];
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth / 2) {
+                let b = document.createElement('div');
+                b.classList.add('bubble');
+                b.style.bottom = -Math.random() * 15 + 'px';
+                b.style.left = i + 'px';
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth / 2) {
+                let b = document.createElement('div');
+                b.classList.add('bubble');
+                b.style.bottom = -Math.random() * 15 + 'px';
+                b.style.left = i + 'px';
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth / 2) {
+                let b = document.createElement('div');
+                b.classList.add('bubble');
+                b.style.bottom = -Math.random() * 15 + 'px';
+                b.style.left = i + 'px';
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth) {
+                let b = document.createElement('div');
+                bubbles.push(b);
+                b.classList.add('bubble');
+                b.style.bottom = '0px';
+                b.style.left = i + 'px';
+                b.dataset.rate = Math.random() / 2;               
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = Math.random() * window.innerWidth / 2; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth * 8) {
+                let b = document.createElement('div');
+                bubbles.push(b);
+                b.classList.add('bubble');
+                b.style.bottom = '0px';
+                b.style.left = i + 'px';
+                b.dataset.rate = Math.random() * 2;               
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth / 2) {
+                let b = document.createElement('div');
+                bubbles.push(b);
+                b.classList.add('bubble');
+                b.style.bottom = '0px';
+                b.style.left = i + 'px';
+                b.dataset.rate = Math.random() / 6;
+                bubbleContainer.appendChild(b);
+            }
+            
+            for(let i = Math.random() * window.innerWidth / 2; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth * 8) {
+                let b = document.createElement('div');
+                bubbles.push(b);
+                b.classList.add('bubble');
+                b.style.bottom = '0px';
+                b.style.left = i + 'px';
+                b.dataset.rate = Math.random() * 2;               
+                bubbleContainer.appendChild(b);
+            }
+            for(let i = 0; i <= window.innerWidth + bubbleWidth; i+= bubbleWidth / 2) {
+                let b = document.createElement('div');
+                bubbles.push(b);
+                b.classList.add('bubble');
+                b.style.bottom = '0px';
+                b.style.left = i + 'px';
+                b.dataset.rate = Math.random() / 6;
+                bubbleContainer.appendChild(b);
+            }
+            document.addEventListener('scroll', () => {
+                let top = bubbleContainer.getBoundingClientRect().top;
+                if(top <= 0) {
+                    Array.prototype.forEach.call(bubbles, b => {
+                        b.style.bottom = -top * b.dataset.rate + 'px';
+                    });
+                } else {
+                    Array.prototype.forEach.call(bubbles, b => {
+                        b.style.bottom = '0px';
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        var skills;
+        var sbBody;
+        document.addEventListener('DOMContentLoaded', () => {
+            skills = document.getElementsByName('skill-selector');
+            sbBody = document.getElementsByClassName('skill-bubble-body')[0];
+            for(let i = 0; i < skills.length; i++) {
+                let bd = document.getElementById("bd" + skills[i].id.slice(-1));
+                skills[i].addEventListener('change', e => {
+                    if(skills[i].checked) {
+                        sbBody.style.overflowY = 'hidden';
+                        skills[i].nextSibling.nextSibling.dataset.cursor = 'x';
+                        document.body.style.overflowY = 'hidden';
+                        bd.style.transform = "translate(-50%, -50%) scale(1)";
+                    } else {
+                        sbBody.style.overflowY = '';
+                        skills[i].nextSibling.nextSibling.dataset.cursor = '';
+                        document.body.style.overflowY = '';
+                        bd.style.transform = "translate(-50%, -50%) scale(0)";
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.scrollTop = 0;
+            setTimeout(() => { window.scrollTo(0, 0) }, 500);
+            
+            // CURSOR
+            var cursor;
+            cursor = document.getElementById('cursor');
+            document.addEventListener('mousemove', e => {
+                moveCursor(e);
+            });
+            function moveCursor(e) {
+                let type = e.target.dataset.cursor;
+                let click = e.target.dataset.cursor
+                cursor.className = '';
+                if(type) cursor.classList.add(type);
+                if(click) cursor.style.opacity = "100%";
+                else cursor.style.opacity = '';
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+            
+            // NAME
+            var letters = document.getElementsByClassName('letter');
+            Array.prototype.forEach.call(letters, letter => {
+                setTimeout(() => {
+                    letter.style.transform = "translateX(0)";
+                    setTimeout(() => {
+                        letter.style.transition = "transform 0s";
+                    }, 1000);
+                }, parseFloat(letter.dataset.delay) * 1000);
+            });
+
+            // PICS
+            var pic = document.getElementById("pics").children[0];
+            let picTop = pic.getBoundingClientRect().y;
+
+            // STARWARS
+            var swText = [];
+            var defaultRot = 10;
+            let temp = document.getElementsByClassName("starwars");
+            for(let i = 0; i < temp.length; i++) {
+                swText.push({elem: temp[i], top: temp[i].getBoundingClientRect().y});
+            }
+            setTimeout(() => {
+                for(let i = 0; i < temp.length; i++) {
+                    swText.push({elem: temp[i], top: temp[i].getBoundingClientRect().y});
+                }
+            }, 100);
+            
+
+            // WHAT DOES HE DO?
+            var wdhd = document.getElementsByClassName("wdhd");
+            let end = window.innerHeight / 2 - (wdhd[0].getBoundingClientRect().height / 2);
+            // dot
+            var dot = document.getElementsByClassName('dot')[0];
+            let dotSize = dot.getBoundingClientRect().width;
+            // imw
+            var imwComponents = document.getElementsByClassName('imw')[0].children;
+
+            // PROJECTS
+            var pLines = document.getElementsByClassName('p-line');
+            // Widget Wheel
+            var ticks = document.getElementsByClassName('tick');
+            var wheel = document.getElementsByClassName('wheel')[0];
+            let ptemp = document.getElementsByClassName('project');
+            var projects = [];
+            Array.prototype.forEach.call(ptemp, p => {
+                projects.push(p);
+            });
+
+            var wbool = true;
+            var timeout = null;
+
+            let numProjects = 4;
+            let degree = 360 / ticks.length;
+            let color = 255 / ticks.length; 
+            let currentColor = 0;
+            let currentDegree = 0;
+            let wheelRotation = 0;
+            var t0, t1, t2;
+            Array.prototype.forEach.call(ticks, tick => {
+                tick.style.transform = `rotate(${currentDegree}deg) translate(11vw)`;
+                currentDegree += degree;
+                // console.log(`#FF${Math.floor(currentColor).toString(16)}00`);
+                // tick.style.background = `#FF${currentColor.toString(16)}00`;
+                currentColor += color;
+            });
+            updateTicks();
+            function rotateProjects(i) {
+                function arrayRotate(arr, reverse) {
+                    if (reverse) arr.unshift(arr.pop());
+                    else arr.push(arr.shift());
+                    return arr;
+                }
+                if(i === 0) {
+                    let mover = projects[projects.length - 1];
+                    let temp = mover.style.transition;
+                    mover.style.transition = "all 0s";
+                    mover.style.left = "-100vw";
+                    setTimeout(() => {
+                        mover.style.transition = temp;
+                    }, 40);
+                    arrayRotate(projects, true);
+                    i++;
+                } else if(i === projects.length - 1) {
+                    let mover = projects[0];
+                    let temp = mover.style.transition;
+                    mover.style.transition = "all 0s";
+                    mover.style.left = "100vw";
+                    setTimeout(() => {
+                        mover.style.transition = temp;
+                    }, 40);
+                    arrayRotate(projects, false);
+                }
+                return i;
+            }
+            rotateProjects(0);
+            wheel.addEventListener('wheel', e => {
+                if(wheel.children[0].style.fontSize !== '0px') {
+                    wheel.children[0].style.fontSize = '0px';
+                }
+                e.preventDefault();
+                if(wbool) {
+                    let pos = (e.deltaY / Math.abs(e.deltaY))
+                    wheelRotation += degree * pos;
+                    wheel.style.transform = `rotate(${wheelRotation}deg)`;
+                    let scale = (updateTicks() ?? 0) / 35;
+                    if(scale === 1) {
+                        wbool = false;
+                    }
+                    let m = 100 / (ticks.length / numProjects);
+                    for(let i = 0; i < projects.length; i++) {
+                        project = projects[i];
+                        let current = parseFloat(project.style.left);
+                        let next = current + (pos * m);
+                        project.style.left = next + 'vw';
+                        // project.style.transform = `scale(${scale}) translate(5vw)`;
+                        if(next === 0) {
+                            i = rotateProjects(i);
+                        }
+                        // console.log(project.children);
+                        // Array.prototype.forEach.call(project.children, elem => {
+                        //     elem.style.transform = `scale(${scale})`;
+                        // });
+                    }
+                } else {
+                    
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        wbool = true;
+                    }, 100);
+                }
+            });
+            function updateTicks() {
+                if(t0) {
+                    t0.style.width = '';
+                    t1.style.width = '';
+                    t2.style.width = '';
+                    t0.style.background = '';
+                    t1.style.background = '';
+                    t2.style.background = '';
+                }
+                let i1 = Math.floor(ticks.length * mod(185 - wheelRotation, 360) / 360);
+                let i0 = mod(i1 - 1, ticks.length);
+                let i2 = mod(i1 + 1, ticks.length);
+                t0 = ticks[i0];
+                t1 = ticks[i1];
+                t2 = ticks[i2];
+                t0.style.width = 30 + (parseInt(t0.dataset.maxheight) * .75) + 'px';
+                t1.style.width = 30 + parseInt(t1.dataset.maxheight) + 'px';
+                t2.style.width = 30 + (parseInt(t2.dataset.maxheight) * .75) + 'px';
+                if(t0.dataset.maxheight) t0.style.background = "#FF9900";
+                if(t1.dataset.maxheight) t1.style.background = "#FFCC00";
+                if(t2.dataset.maxheight) t2.style.background = "#FF9900";
+                return t1.dataset.maxheight;
+            }
+            function mod(n, m) {
+                return ((n % m) + m) % m;
+            }
+
+            // SCROLL
+            document.addEventListener('scroll', e => {
+
+                // NAME
+                Array.prototype.forEach.call(letters, letter => {
+                    let trans = -1 * window.scrollY * (1 - parseFloat(letter.dataset.scrollspeed));
+                    letter.style.transform = `translateX(0) translateY(${trans}px)`;
+                });
+                
+                // PICS
+                let scale = window.scrollY / picTop;
+                scale = scale > 1 ? 1 : scale;
+                pic.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+                // STARWARS
+                swText.forEach(text => {
+                    if(window.scrollY + window.innerHeight > text.top && text.elem.getBoundingClientRect().bottom > 0) {
+                        let z = -(window.scrollY + window.innerHeight - text.top) / 5;
+                        text = text.elem;
+                        let rot = defaultRot + (-z / 15);
+                        text.style.transform = `perspective(400px) rotateX(${rot}deg) translateZ(${z}px) translateY(${z * 10}px)`;
+
+                        document.body.classList.add("dark");
+                        cursor.style.background = 'white';
+                    } else {
+                        document.body.classList.remove("dark");
+                        cursor.style.background = '';
+                    }
+                });
+
+                // WDHD
+                for(let i = 0; i < wdhd.length; i++) {
+                    let word = wdhd[i];
+                    let bb = word.getBoundingClientRect();
+                    let w = bb.width;
+                    let y = bb.y;
+                    if(i % 2 === 0) {
+                        if(y - w > end) {
+                            word.style.transform = "translateX(100vw)";
+                        } else if(y < end) {
+                            word.style.transform = `translateX(calc(100vw - ${w}px))`;
+                            if(i === 4) doDot(end, y);
+                        } else {
+                            word.style.transform = `translateX(calc(100vw - ${w - (y - end)}px))`;
+                            if(i === 4) doDot();
+                        }
+                    } else {
+                        if(y - w > end) {
+                            word.style.transform = `translateX(${-w}px)`;
+                        } else if(y < end) {
+                            word.style.transform = `translateX(0)`;
+                        } else {
+                            word.style.transform = `translateX(${-(y - end)}px)`;
+                        }
+                    }
+                    // dot
+                    function doDot(end, y) {
+                        // end > y
+                        if(end) {
+                            let dist = end - y;
+                            let h = window.innerHeight / 2;
+                            if(dist < h) {
+                                dot.style.transform =`translateY(${dist}px)`;
+                                dot.style.width = dotSize + 'px';
+                                
+                                Array.prototype.forEach.call(imwComponents, c => {
+                                    c.style.transform = `translate(${c.dataset.startx}%, ${c.dataset.starty}%)`;
+                                });
+                            // if dist >= h and (dist - h) + dotSize <= window.innerWidth * .91
+                            // so dist - h starts at 0 and ends at (window.innerWidth * .91 - dotSize)
+                            // 
+                            } else if((dist - h) + dotSize <= window.innerWidth * .91) {
+                                dist -= h;
+                                dot.style.transform = `translate(${-dist}px, ${ dist / 1.4 + h }px)`;
+                                dot.style.width = dotSize + (dist) + 'px';
+                                
+                                Array.prototype.forEach.call(imwComponents, c => {
+                                    let percent = dist / ((window.innerWidth * .91) - dotSize);
+                                    percent = 1 - percent;
+                                    // console.log('p: ' + percent + ' d-h: ' + dist);
+                                    c.style.transform = `translate(${c.dataset.startx * percent}%, ${c.dataset.starty * percent}%)`;
+                                });
+                            } else {
+                                // can be optimized
+                                dot.style.width = window.innerWidth * .91 + 'px';
+                                dot.style.transform = `translate(${-(window.innerWidth * .91 - dotSize)}px, ${ ((window.innerWidth * .91) - dotSize) / 1.4 + h }px)`;
+                            
+                                Array.prototype.forEach.call(imwComponents, c => {
+                                    c.style.transform = ''; 
+                                });
+                            }
+                        } 
+                        else {
+                            dot.style.transform = "";
+                        }
+                    }
+                }
+
+                // PROJECTS
+                for(let i = 0; i < pLines.length; i++) {
+                    if(pLines[i].getBoundingClientRect().top < window.innerHeight / 1.5) {
+                        pLines[i].classList.add('p-line-out');
+                    } else {
+                        pLines[i].classList.remove('p-line-out');
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var drips = document.getElementsByClassName('work-cover')[0].children;
+            let dripTop = drips[0].getBoundingClientRect().top;
+            var lines = document.getElementsByClassName('line');
+            let lineTop = lines[0].getBoundingClientRect().top;
+            var jobCovers = document.getElementsByClassName('job-cover');
+            var jobs = document.getElementsByClassName('job');
+            let jcOffset = 50;
+            let imageWidth = 280;
+            Array.prototype.forEach.call(jobs, job => {
+                let img = job.getElementsByTagName('img')[0];
+                img.addEventListener('click', () => {
+                    if(img.dataset.link) window.open(img.dataset.link, "_blank");
+                });
+            });
+            
+
+            document.addEventListener('scroll', () => {
+                let scroll = window.scrollY + window.innerHeight;
+                if(scroll > dripTop) {
+                    Array.prototype.forEach.call(drips, drip => {
+                        let dist = drip.dataset.speed * (scroll - dripTop);
+                        drip.style.transform = `translateY(-${dist}px)`;
+                    });
+                } else {
+                    Array.prototype.forEach.call(drips, drip => {
+                        drip.style.transform = '';
+                    });
+                }
+                if(scroll > lineTop) {
+                    let dist = .4 * (scroll - lineTop);
+                    Array.prototype.forEach.call(lines, line => {
+                        line.style.transform = `translate(-100%, -25%) translateX(-${dist}px) rotate(20deg)`;
+                    });
+                } else {
+                    Array.prototype.forEach.call(lines, line => {
+                        line.style.transform = '';
+                    });
+                }
+                for(let i = 0; i < jobs.length; i++) {
+                    let t;
+                    if(i % 2 === 0) {
+                        t = `100% - ${imageWidth}px`;
+                    } else {
+                        t = `-100% + ${imageWidth}px`;
+                    }
+                    let jc = jobCovers[i];
+                    let j = jobs[i];
+                    let jcbb = jc.getBoundingClientRect();
+                    if(jcbb.bottom + jcOffset < window.innerHeight) {
+                        jc.style.transform = `translateX(${i%2===0 ? '-' : ''}100%)`;
+                        j.style.transform = '';
+                    } else if(jcbb.top > window.innerHeight) {
+                        jc.style.transform = `translateX(${i%2===1 ? '-' : ''}${imageWidth}px)`;
+                        j.style.transform = `translateX(calc(${t}))`;
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ropa+Sans&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Marcellus+SC&family=Monoton&family=Permanent+Marker&family=Work+Sans:wght@500&display=swap');
+        body{
+            overflow-x: hidden;
+            margin: 0px;
+            height: 5000px;
+            transition: background-color 1s;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none; 
+            scrollbar-width: none;
+        }
+        a {
+            text-decoration: none;
+            cursor: none;
+        }
+        a:hover {
+            color: default;
+        }
+        /* NAME */
+        #name {
+            margin: 0 5%;
+            white-space: nowrap;
+            height: 80vw;
+        }
+        .letter {
+            font-size: 20vw;
+            /* opacity: 50%; */
+            transform: translateX(200vw);
+            transition: transform 1s;
+            display: inline-block;
+            margin: -5vw 1.4vw;
+            font-family: 'Bebas Neue', cursive;
+        }
+        .letter:hover {
+            opacity: 100%;
+        }
+        .r {
+            color: red;
+        }
+        .o {
+            color: orange;
+        }
+        .y {
+            color: yellow;
+        }
+        .g {
+            color: green;
+        }
+        .b {
+            color: blue;
+        }
+        .i {
+            color: indigo;
+        }
+        .v {
+            color: violet;
+        }
+        .br {
+            background: red !important;
+        }
+        .bo {
+            background: orange !important;
+        }
+        .by {
+            background: yellow;
+        }
+        .bg {
+            background: green;
+        }
+        .bb {
+            background: blue;
+        }
+        .bi {
+            background: indigo;
+        }
+        .bv {
+            background: violet;
+        }
+
+        /* CURSOR */
+        html {
+            cursor: none !important;
+        }
+        #cursor {
+            position: fixed;
+            /* transition: background-color 1s, width 1s, height 1s; */
+            opacity: 100%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: black;
+            z-index: 1000;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .w {
+            background: white !important;
+        }
+        .spin::before {
+            position: absolute;
+            content: '';
+            background: black;
+            height: 16px;
+            width: 16px;
+            top: 50%;
+            left: 50%;
+            animation: spin 3s ease-in-out infinite;
+            border-radius: 3px;
+        }
+        .x {
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .x::before, .x::after {
+            position: absolute;
+            content: '';
+            width: 16px;
+            height: 4px;
+            background: black;
+            /* animation: grow 1s forwards; */
+        }
+        .x::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .x::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        .click {
+            opacity: 90% !important;
+        }
+        .click::after {
+            position: absolute;
+            content: '';
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            animation: click 1s infinite;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes click {
+            0% {
+                box-shadow: 0 0 0 0 black;
+                width: 120%;
+                height: 120%;
+            }
+            30% {
+                box-shadow: 0 0 0 3px black;
+                width: 120%;
+                height: 120%;
+            }
+            60% {
+                box-shadow: 0 0 0 0 black;
+                width: 150%;
+                height: 150%;
+            }
+        }
+        @keyframes grow {
+            from {width: 0; height: 0;}
+            to {width: 20px; height: 4px;}
+        }
+        /* .spin::after {
+            content: 'Spin';
+            position: absolute;
+            left: 200%;
+            top: -10%;
+            animation: fade 2s forwards;
+            font-family: fantasy;
+            white-space: nowrap;
+            color: blue;
+        } */
+        
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            40% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            60% {
+                transform: translate(-50%, -50%) scale(1) rotate(180deg);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1) rotate(180deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0) rotate(180deg);
+            }
+        }
+
+        @keyframes fade{
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* PICS */
+        #pics{
+            width: 50vw;
+            position: relative;
+            display: block;
+            height: 100vh;
+            white-space: nowrap;
+            margin: 0px;
+            transform: translateX(25vw);
+            /* margin-bottom: 10vw; */
+        }
+        #pics > .pic {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            font-family: 'Bebas Neue', cursive;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #pics > .pic > img {
+            height: 100%
+        }
+        #pics > .pic > p{
+            position: absolute;
+            font-size: 10vw;
+            margin: 0;
+            transform: rotateY(0deg) translateZ(30px);
+        }
+
+        /* STARWARS */
+        body.dark {
+            background: #010006;
+            /* background-image: url("https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg");  */
+        }
+        .starwars {
+            width: 80%;
+            font-family: 'Ropa Sans', sans-serif;
+            margin: 40vh 10% -70vh 10%;
+            font-size: 5em;
+            position: relative;
+            text-align: center;
+            transform: perspective(400px) rotateX(10deg) translateZ(0px);
+            transform-style: preserve-3d;
+        }
+        
+        /* WDHD */
+        .wdhd {
+            position: relative;
+            display: inline-block;
+            transform: translateX(100vw);
+            font-size: 30vw;
+            font-family: 'Bebas Neue', cursive;
+            margin: -5vw 0;
+        }
+        .wdhd > .q {
+            white-space: nowrap;
+            position: relative;
+        }
+        .wdhd > .q::before {
+            content: "";
+            position: absolute;
+            background: white;
+            width: .15em;
+            height: .15em;
+            bottom: 26%;
+            transform: translateX(73%);
+            border-radius: 3px;
+        }
+        /* DOT */
+        .wdhd > .q > .dot {
+            position: absolute;
+            width: .11em;
+            height: .11em;
+            background: red;
+            border-radius: 3px;
+            left: 30%;
+            top: 64%;
+            max-width: 91vw;
+        }
+        /* IMW */
+        .wdhd > .q > .dot > .imw {
+            width: 91vw;
+            height: 91vw;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            white-space: normal;
+            /* display: block; */
+            font-size: 0;
+            margin-top: 2%;
+            display: grid;
+            gap: 2%;
+            grid-template-areas: 
+                "A A A B B"
+                "A A A B B"
+                "C C C B B"
+                "C C C D D"
+                "C C C D D";
+        }
+        .wdhd > .q > .dot > .imw > div {
+            /* width: 46%;
+            height: 20%;
+            margin: 2%;
+            position: relative;
+            display: inline-block; */
+
+            border-radius: 5px;
+            color: white;
+            font-size: 16vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .area-a {
+            grid-area: A;
+        }
+        .area-b {
+            grid-area: B;
+        }
+        .area-c {
+            grid-area: C;
+        }
+        .area-d {
+            grid-area: D;
+        }
+
+
+        .continue {
+            width: 100vw;
+            margin-top: 110vw;
+            margin-left: -4.7vw;
+            position: relative;
+        }
+
+        /* PROJECTS */
+        .projects {
+            width: 100%;
+            /* width: 100vw; */
+            height: 15vw;
+            background: white;
+            font-size: 20vw;
+            padding-top: 2vw;
+            color: white;
+            margin: 10vw 0;
+            /* margin-left: -4.7vw; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .p-line {
+            position: absolute;
+            width: 100vw;
+            height: 5vw;
+            transition: transform 1s ease;
+            transform: translateX(100%);
+            display: inline-block;
+            z-index: 0;
+        }
+        .p-line-out {
+            transform: translateX(0) !important;
+        }
+        .p-line:nth-child(1) {
+            top: 0vw;
+        }
+        .p-line:nth-child(2) {
+            top: 5vw;
+        }
+        .p-line:nth-child(3) {
+            top: 10vw;
+        }
+        /* Widget Wheel */
+        .widget-wheel-body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        :root{
+            --wheel-speed: .3s;
+        }
+        .right{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 0%;
+            transform: translateX(50%);
+        }
+        .content{
+            position: absolute;
+            white-space: nowrap;
+            height: 100%;
+        }
+        .wheel{ 
+            width: 50%;
+            padding-top: 25%;
+            padding-bottom: 25%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform var(--wheel-speed) linear, opacity .2s ease;
+            opacity: 20%;
+            /* background: white;
+            box-shadow: 0 0 0 30px white; */
+        }
+        .wheel:hover {
+            opacity: 100%;
+        }
+        .wheel:hover > .tick {
+            height: 15px;
+        } 
+        .tick {
+            width: 30px;
+            height: 10px;
+            border-radius: 5px;
+            background: red;
+            position: absolute;
+            transition: width var(--wheel-speed) ease, background-color var(--wheel-speed) ease, height .2s ease;
+        }
+        .wheel > .title {
+            font-size: 3vw;
+            color: red;
+            transform: rotate(-90deg) translateY(-5vw);
+            transition: all .3s ease-out;
+        }
+        .project {
+            width: 90vw;
+            height: 90vh;
+            position: absolute;
+            transition: left .3s ease-out, transform .5s linear;
+            background: #F001;
+            top: 5vh;
+            border-radius: 5vw;
+            transform: translateX(5vw);
+            box-shadow: 20px 20px 0 #0002;
+        }
+        .project > * {
+            position: absolute;
+            transition: all 1s;
+            color: black;
+        }
+        .project > .title {
+            top: -5%;
+            left: 30%;
+            transform: translateX(-50%);
+            font-size: 6vw;
+            letter-spacing: 3px;
+            z-index: 100;
+            border-radius: 10px;
+            border: 5px solid black;
+            padding: 0 10px;
+        }
+        .project > .description {
+            z-index: 100;
+            font-size: 1.5vw;
+            font-family: 'Ropa Sans', cursive;
+            left: 5%;
+            bottom: 10%;
+            width: 50%;
+            /* overflow: wrap; */
+            white-space: normal;
+        }
+        .project > .title:hover {
+            letter-spacing: 8px;
+            background: #0001;
+        }
+        .project > .title:hover ~ img {
+            transform: scale(1.1);
+        }
+        .project > img {
+            opacity: 70%;
+        }
+
+        /* BUBBLES */
+        .bubbles-container{
+            width: 100%;
+            height: 180vh;
+            margin-top: -100vh;
+            position: relative;
+            pointer-events: none;
+        }
+        .bubble {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, 50%);
+            background: black;
+            /* opacity: 90%; */
+            mix-blend-mode: multiply;
+        }
+        .bubble:nth-child(7n+0) {
+            background: red;
+        }
+        .bubble:nth-child(7n+1) {
+            background: orange;
+        }
+        .bubble:nth-child(7n+2) {
+            background: yellow;
+        }
+        .bubble:nth-child(7n+3) {
+            background: green;
+        }
+        .bubble:nth-child(7n+4) {
+            background: blue;
+        }
+        .bubble:nth-child(7n+5) {
+            background: indigo;
+        }
+        .bubble:nth-child(7n+6) {
+            background: violet;
+        }
+        /* Skill bubbles */
+        .skill-bubble-body::-webkit-scrollbar {
+            display: none;
+        }
+        .skill-bubble-body{
+            background: black;
+            height: 200vh;
+            overflow-x: hidden;
+            position: relative; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none;
+        }
+        .skill-bubble{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            color: black;
+            font-family: 'Bebas Neue', cursive;
+            transition: width 1s, height 1s, box-shadow .2s ease-out, color 1s;
+            border: none;
+            animation: float 2s infinite ease-in-out .3s;
+            box-shadow: 0 0 0 0 white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: none;
+            z-index: 2;
+        }
+        .skill-bubble:hover {
+            box-shadow: 0 0 0 10px white;
+        }
+        .lil-bubble {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+            animation: float 2s infinite ease-in-out .5s;
+        }
+        .bubble-details {
+            pointer-events: none;
+            position: fixed !important;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 1s;
+            z-index: 200;
+            text-align: center;
+            color: black;
+            display: grid;
+            font-family: 'Ropa Sans', cursive;
+            font-size: 16px;
+            grid-template-areas:    
+                "D D"
+                "A A"
+                "B C";
+        }
+        .bubble-details > div {
+            padding: 10px;
+        }
+        .bubble-details > div:nth-child(1) {
+            font-family: 'Bebas Neue', cursive;
+            grid-area: D;
+            font-size: 32px;
+        }
+        .bubble-details > div:nth-child(2) {
+            grid-area: A;
+        }
+        .bubble-details > div:nth-child(3) {
+            grid-area: B;
+            text-align: right;
+        }
+        .bubble-details > div:nth-child(4) {
+            grid-area: C;
+            line-height: 112%;
+            padding-top: 11px;
+            text-align: left;
+        }
+        .bubble-details::after {
+            content: 'click anywhere to close';
+            font-size: 10px; 
+            position: absolute; 
+            right: -47%;
+            top: calc(-50vh + 55%)
+        }
+        @keyframes float {
+            0% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(20px);
+            }
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+        }
+
+        input[name=skill-selector] {
+            display: none;
+        }
+        input[name=skill-selector]:checked + .skill-bubble {
+            width: calc(300vw);
+            height: calc(300vw);
+            z-index: 99;
+            color: #0000;
+        }
+        .skills-title {
+            padding-top: 10vh;
+            color: white;
+            position: absolute;
+            font-size: 20vw;
+            left: 53%;
+            top: 10%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-family: 'Bebas Neue', cursive;
+        }
+        .skills-title > span {
+            position: relative;
+            display: inline-block;
+            margin: 0 20px;
+            transition: text-shadow .2s ease-out;
+        }
+        .skills-title > span:nth-child(1) {
+            animation: float 2s infinite ease-in-out;
+        }
+        .skills-title > span:nth-child(2) {
+            animation: float 2s infinite ease-in-out .2s;
+        }
+        .skills-title > span:nth-child(3) {
+            animation: float 2s infinite ease-in-out .4s;
+        }
+        .skills-title > span:nth-child(4) {
+            animation: float 2s infinite ease-in-out .6s;
+        }
+        .skills-title > span:nth-child(5) {
+            animation: float 2s infinite ease-in-out .8s;
+        }
+        .skills-title > span:nth-child(6) {
+            animation: float 2s infinite ease-in-out 1s;
+        }
+
+        /* WORK */
+        .work-cover {
+            width: 100%;
+            height: 26vw;
+            position: absolute;
+            font-size: 0;
+            transform: translateY(-10%);
+        }
+        .work-cover > div {
+            display: inline-block;
+            height: 100%;
+            background: black;
+            width: 3%;
+            margin: 0 .5%;
+            border-radius: 1.5vw;
+            position: relative;
+        }
+        .work {
+            font-size: 20vw;
+            font-family: "Bebas Neue", cursive;
+            position: relative;
+            text-align: center;
+            color: black;
+        }
+        .work-title {
+            color: red;
+        }
+
+        .job {
+            width: 100%;
+            position: relative;
+            font-size: 2vw;
+            white-space: normal;
+            display: grid;
+            transition: transform 1s, opacity 1s;
+            overflow: hidden;
+        }
+        .job:nth-child(2n+1) {
+            grid-template-areas: 
+                "A B"
+                "A C";
+            text-align: left;
+        }
+        .job:nth-child(2n+0) {
+            grid-template-areas: 
+                "B A"
+                "C A";
+            text-align: right;
+        }
+        .job > .title {
+            font-size: 4vw;
+            grid-area: B;
+            margin-left: 7%;
+            margin-right: 7%;
+            margin-top: 2%;
+        }
+        .job > .description {
+            font-family: 'Ropa Sans', cursive;
+            font-size: 2vw;
+            grid-area: C;
+            margin-top: -3%;
+            margin-left: 4%;
+            margin-right: 4%;
+        }
+        .job > img {
+            grid-area: A;
+            object-fit: cover;
+            transition: opacity .5s, transform .5s;
+            opacity: 75%;
+        }
+        .job > img:hover {
+            opacity: 100%;
+            transform: scale(1.1);
+        }
+        .job-cover {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 1s;
+            z-index: 100;
+        }
+
+        /* THANKS */
+        .thanks {
+            width: 100%;
+            height: 50vh;
+            margin-top: 25vh;
+            font-size: 0%;
+            overflow: hidden;
+            position: relative;
+        }
+        .thanks-text {
+            font-size: 20vw;
+            font-family: 'Bebas Neue', cursive;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            /* left: 25%; */
+            white-space: normal;
+            color: white;
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            /* text-shadow: 2px 2px 2px black; */
+        }
+        .thanks > .line {
+            width: 14.2857143%;
+            height: 200%;
+            transform: translate(-100%, -25%) rotate(20deg);
+            display: inline-block;
+            z-index: 0;
+            position: relative;
+        }
+
+        /* SOCIAL */
+        .social-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .social-container > .social-wrapper {
+            width: 25vw;
+            height: 25vw;
+            margin: 2vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15vw;
+            transition: all .5s;
+            position: relative;
+        }
+        .social-container > .social-wrapper > i {
+            transition: all .5s;
+        }
+        .social-container > .social-wrapper:hover {
+            transform: translate(20px, 20px);
+        }
+        .social-container > .social-wrapper:hover > i{
+            color: white;
+            transform: translate(-40px, -40px);
+            text-shadow: 40px 40px 12px #fff1, 30px 30px 6px #fff3, 20px 20px 3px #fff5, 10px 10px 0px #fff7;
+        }
+        .li {
+            color: blue;
+            background: white;
+        }
+        .git {
+            color: indigo;
+            background: white;
+        }
+        .mail {
+            color: violet;
+            background: white;
+        }
+        .li:hover {
+            background: blue;
+        }
+        .git:hover {
+            background: indigo;
+        }
+        .mail:hover {
+            background: violet;
+        }
+
+    </style>
 </head>
-
-<body class="no-scroll">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0ICAgHBw0IBwcHBw0HBwcHBw8ICQcNFREWFhURExMYHSggGBoxJxMTITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDg0NDysZFRktKy0rKy0tNysrKy0tNysrKysrLS0rNy0rKystKysrKysrLSsrKysrLSsrKys3Ny0rLf/AABEIAKgBLAMBIgACEQEDEQH/xAAaAAADAQEBAQAAAAAAAAAAAAAAAQIDBAYF/8QAGxABAQEBAQEBAQAAAAAAAAAAAAERAhIDE0H/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAYEQEBAQEBAAAAAAAAAAAAAAAAEQESAv/aAAwDAQACEQMRAD8A+bzWnLDmtuXt18xryuRny25jGiuYuclzGvMZ3Qpyucr55aTlndGc4VOG3PC5wzSMJwqcOifNU+adJHPPmf5umfM/CdJHN+Y/N0+B4OiOfwfh0eB4Kkc/geHR4HkqRh4Hhv5LyUjHwPLbyXkpGXkvLbyPJSMfJeW3keSkY+S8t/I8lWMPJXlv5F5KvLnvKby6LwV4K1y5ryV4dPgvBV5c14Lw6fBeDprl5fltw5+HTw9estuI25jP5xvxHPRXEb8cp45b8cue6Hzy055Vzy155Y3VTzw0nC+eWk5Z3RnOFThrOVTlmkZTg/DacjylSMPB+G3keSkY+S8tvI8rUjHyPLXyPJSMfI8tcLCkZYWNcLFpGeF5aYMKRn5GNMGFWMvI8tcLCrGeDy0wYlajLyXlrg8lXlj5Ly28jyVqMPI8tvI8pWo8R83T83L8/wCOv5voenndPzjp4jD5Or5xx0acR0ccs+I6OI57qr55a88lxG3Mc91Rzy155LmNZGd0TOVTlUipGaJ8jyvBiUZ4MaFijPBjTCwpGeFjTCxSIwsXYWFWIwsXhYpEYWLwYVYjBi8LCrE4WLwYlWIwYrBgsRgxZYNRGDFjEWIweV4WCx4H5fx1/Jy/KOz5Po+nkdXyjq+cc3ydXDj6Vv8AOOniMPm6OHPVbcxrzGXNa81z0a8xrIy5rWVjRUOFKcqChg0ailhYei1Qiw9LRYMLD0hYWFhkqwsLFELE4MMCxOBRCwiMCwiMBCGGWooIaNFAGlorwvy5dXzjP58ujjl7915eW3zdPDDiN+HPdXl0cVvxXNzW3Nc9WOnmtea5uemnPTGkdPNaTpzTpU7ZhHTOjnTnnZztIR0ej9Of2PZCOj0PTn9n7IsbaNY+z9CxroZzo9FiwjTRqAjAsAACERkLCBkEIAggIWptA9LU2lelFaNZ3pPog81zy255VOFzl6d1nkcxrymRcZ3Tlpy05rGLlQjadLnTCVU6ZI6J0qdub2fshHT7P25vZ+0hHT7Htzez9kI6fZ+3NO1TshHROlTpzzpU6SLHROjlYzpUqLG0qpWUq5WViwWhFigUMWEWGQQrCp0qJCqadTaoVRaq1FqoVqbS6qLVQ70j0nrpF6ajLknB+WmDGq6IwzwADBAenqAEX6P0zCkaeh6ZjQjX0c6Y6qUI2nRzplKqVCN5VysOa05qasbStJWPNXKzpG0q+WXLTljVi9OJioixUBQ0IQAAqmmmqhVNOpqom1FPqotaZT1WXVX1WXVaxNT1WdquqytaxjWmDFYTLqnCUFEjDwKJwYYBIUMUSDApKhKgCKhRUBfK+URcZ1WnK+Wcacs6NOWkZ8rjGquKRFIqoaYaABEIdRVVFUKpp1NVnUdIqqitYyjpl016ZdNYzrLpFadIreM62JQYbThYoCpJRKFhYoYqpB4ASFFihKhYYpnCkVEFRcTFRFXGkZxcZ1WkXGcXKwLioiU5UVYTKaBkNLVQWpp1NEKp6VUVpE1NVUVcZR0z6a2IsaxnWViLG1icaZURhlsiMKFgxWDBU4WKwAnCxeDFVGDF4MBOHisOQVOHisGICRUKKiBxcQqIq4qIipWRcOVEPUK00ajRpEqtGpMKdIaQlCaorFRnSsXhYqM7Cxr5LyrLGwvLbyPC1HOCA0eDCAp4eEBRgwADwYAqjBgCAw8AFB4AB4cAQMwAM9ARD09AQPRoAg0wAMACAYYAsPABC8n4AEHg/BAR/9k="
-        id="background">
-
-    <div id="header" style="position: fixed;">
-        <a class="header-link" href="mailto: msandlerespi@umass.edu">contact</a>
-        <a class="header-link" href="Miguel Sandler-Espinosa Resume.pdf" target="_blank">resume</a>
-        <a href="#" class="header-link">miguel<span id="period">.</span></a>
-    </div>
-
-    <img src='me.png' id="home-me" style="pointer-events: none;">
-    <div id="wrapper">
-        <div class="centered drop-container">
-            <h1 id="homepage-title">Get to know Miguel, the </h1>
-            <div id="drop"></div>
+<body>
+    <div id="cursor"></div>
+    <div id="name">
+        <div id="miguel">
+            <span class="letter r" data-scrollspeed="1.1" data-delay="0s">M</span>
+            <span class="letter o" data-scrollspeed="1.2" data-delay=".1s;">I</span>
+            <span class="letter y" data-scrollspeed="1.4" data-delay=".2s;">G</span>
+            <span class="letter g" data-scrollspeed="1.3" data-delay=".3s;">U</span>
+            <span class="letter b" data-scrollspeed="1.2" data-delay=".4s;">E</span>
+            <span class="letter i" data-scrollspeed="1.4" data-delay=".5s;">L</span>
+        </div>
+        <br />
+        <div id="sandler">
+            <span class="letter v" data-scrollspeed="1.1" data-delay=".2s;">S</span>
+            <span class="letter r" data-scrollspeed="1.1" data-delay=".3s;">A</span>
+            <span class="letter o" data-scrollspeed="1.3" data-delay=".4s;">N</span>
+            <span class="letter y" data-scrollspeed="1.2" data-delay=".5s;">D</span>
+            <span class="letter g" data-scrollspeed="1.1" data-delay=".6s;">L</span>
+            <span class="letter b" data-scrollspeed="1.3" data-delay=".7s;">E</span>
+            <span class="letter i" data-scrollspeed="1.2" data-delay=".8s;">R</span>
+            <span class="letter v" data-scrollspeed="1.0" data-delay=".9s;">-</span>
+        </div>
+        <br />
+        <div id="espinosa">
+            <span class="letter r" data-scrollspeed="1.1" data-delay=".4s;">E</span>
+            <span class="letter o" data-scrollspeed="1.0" data-delay=".5s;">S</span>
+            <span class="letter y" data-scrollspeed="1.2" data-delay=".6s;">P</span>
+            <span class="letter g" data-scrollspeed="1.3" data-delay=".7s;">I</span>
+            <span class="letter b" data-scrollspeed="1.1" data-delay=".8s;">N</span>
+            <span class="letter i" data-scrollspeed="1.2" data-delay=".9s;">O</span>
+            <span class="letter v" data-scrollspeed="1.1" data-delay="1.0s;">S</span>
+            <span class="letter r" data-scrollspeed="1.0" data-delay="1.1s;">A</span>
         </div>
     </div>
-    <div class="social-buttons">
-        <a href="https://www.linkedin.com/in/miguel-sandler-espinosa-1290251b0/"
-            class="social-buttons__button social-button social-button--linkedin" target="_blank" aria-label="LinkedIn">
-            <span class="social-button__inner">
-                <i class="fab fa-linkedin-in"></i>
-            </span>
-        </a>
-        <a href="https://github.com/msandlerespi" class="social-buttons__button social-button social-button--github"
-            target="_blank" aria-label="GitHub">
-            <span class="social-button__inner">
-                <i class="fab fa-github"></i>
-            </span>
-        </a>
-        <a href="mailto: msandlerespi@umass.edu" class="social-buttons__button social-button social-button--mail"
-            target="_blank" aria-label="Email">
-            <span class="social-button__inner">
-                <i class="far fa-envelope"></i>
-            </span>
-        </a>
+    <div id="pics" >
+        <div class="pic">
+            <img src="assets/cool.jpg">
+            <p class="o" style="left: -5%; top: 0px;">That's Me!</p>
+            <p class="o" style="right: -5%; bottom: 0px;">So Cool!</p>
+        </div>
+    </div>
+
+    <p class="starwars y">Once upon a time, in a land far far away (Michigan), a boy was born and named Miguel. After one year, he and his family moved to Boston, MA, where he could fulfill his true purpose. At 5, he began his creative endeavors, inventing cake recipes from scratch. In elementary school, he became an origami master, and ran an origami sale with a fellow master to raise money for the tsunami in Chile. In highschool, Miguel found music production and fell in love. Wanting to share his love for music production, he started a club at his highschool that's still running to this day. So, now he's growing up. We know what he's done, but...</p>
+
+    <span class="wdhd g">WHAT</span>
+    <br />
+    <span class="wdhd b">DOES</span>
+    <br />
+    <span class="wdhd i">HE</span>
+    <br />
+    <span class="wdhd v">DO</span>
+    <br />
+    <span class="wdhd r">NOW<span class="q">?<div class="dot">
+        <div class="imw">
+            <div class="area-a bo" data-startx="-160" data-starty="-20" style="transform: translateX(-100000px);">Whole</div>
+            <div class="area-b by" data-startx="160" data-starty="-160" style="transform: translateX(-100000px); font-size: 20vw; writing-mode: vertical-lr; text-orientation: mixed;">Lotta</div>
+            <div class="area-c bg" data-startx="-160" data-starty="100" style="transform: translateX(-100000px); font-size: 25vw;">Web</div>
+            <div class="area-d bb" data-startx="160" data-starty="80" style="transform: translateX(-100000px); font-size: 15vw;">Stuff</div>
+        </div>
+        <div class="continue">
+            <!-- I think that the html is just gonna continue from here heh -->
+            <div class="projects">
+                <div class="p-line bi"></div>
+                <div class="p-line bv"></div>
+                <div class="p-line br"></div>
+                <div style="transform: translateY(-1vw);">PROJECTS</div>
+            </div>
+            <div class="widget-wheel-body">
+                <div class="content">
+                    <div class="project" style="left: 0vw; background: #0F01;" id="project1">
+                        <a target="_blank" href="./Site_V1/projects/iso.html" class="title" style="top: 3%; left: 50%" data-cursor='click'>Isometric Design Tool</a>
+                        <p class="description">After taking a graphic arts class in highschool, I was missing the time I got to spend messing around on Illustrator, especially making cute little isometric designs (like the one above). Rather than paying for Illustrator, I decided to make this tool (first in processing and then later converted into p5.js). Building it taught me about some basic UI design, and forced me to try and come up with clever ways to build history and save functionalities. Although it's far from perfect, I learned tons from it, and still find it fun to play around with.</p>
+                        <img style="top: 10%; left: 5%; width: 28%;" src="./assets/isometricEx.png" />
+                        <img style="bottom: 10%; right: 5%; width: 32%;" src="./assets/isometric.png" />
+                    </div>
+                    <div class="project" style="left: 100vw; background: #EE82EE11;" id="project4">
+                        <a target="_blank" href="https://github.com/msandlerespi/Thoughtful" class="title" style="left: 75%; top: 5%;" data-cursor='click'>Thoughtful</a>
+                        <p class="description">My final project for my HarvardX course on Web Design, this was a creative social media platform in which people could share their thought processes regarding certain issues using Pro Con trees. The project used Django for the backend and HTML, CSS, and JS for the frontend. To make this, I had to develop especially complex models (storing trees), and so my skills in django were strongly solidified. In addition, I got some experience with interactive design, as I wanted to make the process of creating trees simple for the user.</p>
+                        <img style="top: 10%; left: 5%; width: 50%;" src="./assets/thoughtful-home.png" />
+                        <img style="bottom: 10%; right: 5%; width: 50%;" src="./assets/thoughtful-question.png" />
+                    </div>
+                    <div class="project" style="left: 200vw; background: #4B008211;" id="project3">
+                        <a target="_blank" href="./Site_V1/index.html" class="title" style="left: 40%; top: 0%" data-cursor='click'>Previous Personal Site</a>
+                        <p class="description" style="width: 30%; left: 65%; bottom: 25%; text-align: right;">This was my first large scale web design project. I tried to be creative, with my notable navigation system (drag and drop), my sleek and unique navbar, and a variety of gradient backgrounds. I was far less experienced in CSS and Javascript then as I am now, but that project helped launch me into my love for the styling of web pages. I also learned tons of CSS from it (although some of the concepts I implemented definitely went over my head back then).</p>
+                        <img style="bottom: 10%; left: 5%; width: 55%;" src="./assets/oldsite.png" />
+                    </div>
+                    <div class="project" style="left: 300vw; background: #00F1;" id="project2">
+                        <a target="_blank" href="./Site_V1/projects/tenten.html" class="title" style="top: 5%; left: 25%;" data-cursor='click'>1010! Remake</a>
+                        <p class="description" style="width: 40%; bottom: 15%;">I made this in p5.js as a part of a larger project to make a google chrome extension. The game was run in the tab that expanded when you clicked on the extension in the top right. When building it, I had to utilize google's cloud storage API to make sure progress was maintained. The most fun part of this project was the animation, making sure every little detail looked just like they did in the original game, with the exception of a few details that I thought looked better. Every asset excluding the text was made by me either in Illustrator or using p5.js's basic shapes.</p>
+                        <img style="top: 10%; right: 5%; width: 40%;" src="./assets/1010.png" />
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="wheel">
+                        <div class="title">SPIN ME</div>
+                        <div class="tick" data-maxHeight="35"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="tick" data-maxHeight="35"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick" data-maxHeight="10" data-elem=""></div>
+                        <div class="tick" data-maxHeight="20" data-elem=""></div>
+                        <div class="tick" data-maxHeight="35" data-elem=""></div>
+                        <div class="tick" data-maxHeight="20" data-elem=""></div>
+                        <div class="tick" data-maxHeight="10" data-elem=""></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="tick" data-maxHeight="35"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick" data-maxHeight="10"></div>
+                        <div class="tick" data-maxHeight="20"></div>
+                        <div class="title"><span style="animation-delay: 0s;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bubbles-container">
+                
+            </div>
+            <div class="skill-bubble-body" data-cursor="w">
+                <div class="skills-title" style="margin-left: 2vw;" data-cursor="w"><span data-cursor="w">S</span><span data-cursor="w">K</span><span data-cursor="w" style="margin-left: -1vw;">I</span><span data-cursor="w">L</span><span data-cursor="w">L</span><span data-cursor="w">S</span></div>
+                <input name="skill-selector" type="checkbox" id="bubble1" />
+                <label style="left: 80%; top: 70%;"class="skill-bubble" for="bubble1" data-cursor='click'>Web</label>
+                
+                <input name="skill-selector" type="checkbox" id="bubble2" />
+                <label style="left: 25%; top: 35%; animation-delay: .1s;" class="skill-bubble" for="bubble2" data-cursor='click'>Design</label>
+                
+                <input name="skill-selector" type="checkbox" id="bubble3" />
+                <label style="left: 70%; top: 45%; animation-delay: .2s;" class="skill-bubble" for="bubble3" data-cursor='click'>Music</label>
+                
+                <input name="skill-selector" type="checkbox" id="bubble4" />
+                <label style="left: 20%; top: 75%; animation-delay: .2s;" class="skill-bubble" for="bubble4" data-cursor='click'>CompSci</label>
+            </div>
+            <div class="work">
+                <div class="work-cover">
+                    <div data-cursor='w' data-speed=.2></div><div data-cursor='w' data-speed=.4></div><div data-cursor='w' data-speed=.5></div><div data-cursor='w' data-speed=.1></div><div data-cursor='w' data-speed=.3></div><div data-cursor='w' data-speed=.7></div><div data-cursor='w' data-speed=.2></div><div data-cursor='w' data-speed=.3></div><div data-cursor='w' data-speed=.7></div><div data-cursor='w' data-speed=.8></div><div data-cursor='w' data-speed=.4></div><div data-cursor='w' data-speed=.6></div><div data-cursor='w' data-speed=.8></div><div data-cursor='w' data-speed=.4></div><div data-cursor='w' data-speed=.3></div><div data-cursor='w' data-speed=.7></div><div data-cursor='w' data-speed=.5></div><div data-cursor='w' data-speed=.4></div><div data-cursor='w' data-speed=.7></div><div data-cursor='w' data-speed=.8></div><div data-cursor='w' data-speed=.7></div><div data-cursor='w' data-speed=.4></div><div data-cursor='w' data-speed=.2></div><div data-cursor='w' data-speed=.1></div><div data-cursor='w' data-speed=.3></div>
+                </div>
+                <div class="work-title">WORK</div>
+                <div class="job" style="background: #FFA50033">
+                    <div class="job-cover bo"></div>
+                    <div class="title">Neoscape</div>
+                    <img data-cursor="click" width=280 height=280 src="https://i.pinimg.com/280x280_RS/66/c5/83/66c583d703ced25b9823a4989eea7797.jpg" data-link="https://neoscape.com" />
+                    <div class="description">At neoscape, I worked as an interactive web designer, working in HTML, CSS, SASS, and JS. I refined my front end development skills, and gained valuable experience working on a team. On an average day, my job was to create a set of interactive widgets for various clients' sites and fix minor bugs that came up throughout the day.</div>
+                </div>
+                <div class="job" style="background: #FFFF0033">
+                    <div class="job-cover by"></div>
+                    <div class="title">Freelance</div>
+                    <img width=280 height=280 src="https://s.w.org/style/images/about/simplified.png" />
+                    <div class="description">Working as a freelance wordpress developer has given me a lot of good experience with marketing and business management. I have learned to manage clients and communicate effectively with them so that they get what they need in the best possible way, and build good relationships so that single jobs can turn into many jobs. I've done work as simple as adding content to websites, and as broad as creating entire websites from scratch.</div>
+                </div>
+                <div class="job" style="background: #00FF0033">
+                    <div class="job-cover bg"></div>
+                    <div class="title">Daily Collegian</div>
+                    <img data-cursor="click" width=280 height=280 src="https://pbs.twimg.com/profile_images/1340724199879561219/-oc_Hfhj_400x400.jpg" data-link="https://dailycollegian.com"/>
+                    <div class="description">My school's newspaper, the Massachusetts Daily Collegian, hired me as a web designer for a semester. This was my first job doing web design, and I got to learn what skill level I need to be at in order to succeed. My job consisted mostly of fixing bugs on the site and working on projects to reorganize the site.</div>
+                </div>
+               
+            </div>
+            <div class="thanks">
+                <div class="bb line"></div>
+                <div class="bi line"></div>
+                <div class="bv line"></div>
+                <div class="br line"></div>
+                <div class="bo line"></div>
+                <div class="by line"></div>
+                <div class="bg line"></div>
+                <div class="bb line"></div>
+                <div class="bi line"></div>
+                <div class="bv line"></div>
+                <div class="br line"></div>
+                <div class="bo line"></div>
+                <div class="by line"></div>
+                <div class="bg line"></div>
+                <div class="thanks-text">CHECK ME OUT</div>
+            </div>
+            <div class="social-container">
+                <a target="_blank" href="https://www.linkedin.com/in/msandlerespinosa/" class="social-wrapper li" data-cursor='click'>
+                    <i class="fab fa-linkedin-in" data-cursor='click'></i>
+                </a>
+                <a target="_blank" href="https://github.com/msandlerespi" class="social-wrapper git" data-cursor='click'>
+                    <i class="fab fa-github" data-cursor='click'></i>
+                </a>
+                <a target="_blank" href="mailto:masemmiguel@gmail.com" class="social-wrapper mail" data-cursor='click'>
+                    <i class="far fa-envelope" data-cursor='click'></i>
+                </a>
+            </div>
+        </div>
+    </div></span></span>
+    <div class="bubble-details" id="bd3">
+        <div>Music</div>
+        <div>I have been around music my whole life. My mom is a composer and music theory professor at the New England Conservatory, so since I was little I have attended classical music concerts, listened to the progression of my mom's compositions, and played various instruments. In the 3rd grade I picked up the saxaphone and it became my instrument of choice for the next 9 years. I played in a rock band for 5 years years starting in the 8th grade, playing first drums and later the keyboard. In the tenth grade, I found music production, and that is where my personal musical direction shot off. I played around in FL Studio almost every day. I started a club at my highschool for music production which is still running today.</div>
+        <div>
+            FL Studio
+            <br>
+            Ableton
+            <br>
+            Logic
+            <br>
+            Synthesis
+            <br>
+        </div>
+        <div>
+            ⯁⯁⯁⯁⯁
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+        </div>
+    </div>
+    <div class="bubble-details" id="bd2">
+        <div>Design</div>
+        <div>I have a deep love for design, having played around with different tools since I was young. I studied graphic design in highschool, where I learned Adobe Photoshop and Illustrator, as well as some basic design concepts. Through personal projects, youtube research and my most recent internship as an interactive web designer, I have accumulated a lot of knowledge in web design, both in theory and intuition.</div>
+        <div>
+            Adobe Photoshop
+            <br>
+            Adobe Illustrator
+            <br>
+            CSS 
+        </div>
+        <div>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁⯁⯁
+        </div>
+    </div>
+    <div class="bubble-details" id="bd1">
+        <div>Web Design and Development</div>
+        <div>
+            The majority of my computer science experience has been in web design and development. It began with a full-stack web development course I took from HarvardX. I learned basic front end languages like HTML, CSS, SASS, and JS, back-end tools like Django, Flask (with Jinja), and SQL, and some more complex front-end tools like React. I continued to play around with these languages, using React Native for some Hackathons, and eventually got an internship at Neoscape, where I did interactive web design in HTML, CSS, SASS, and JS, and began to work with WebGL and Three.js. Currently, I am taking a course in Database management, greatly reinforcing my skills with SQL.
+        </div>
+        <div>
+            <b>FRONTEND</b>
+            <br>
+            Three.js
+            <br>
+            CSS
+            <br> 
+            SASS
+            <br> 
+            JS
+            <br>
+            React
+            <br>
+            <b>BACKEND</b>
+            <br>
+            SQL
+            <br> 
+            Django
+            <br> 
+            Flask/Jinja 
+        </div>
+        <div>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁⯁⯁
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁⯁⯁
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁<span style="opacity: 25%;">⯁⯁⯁</span>
+        </div>
+    </div>
+    <div class="bubble-details" id="bd4">
+        <div>Computer Science</div>
+        <div>
+            I took my first computer science class in my senior year of highschool and realized that computer science was not some monotonous, repetitive field, but a field that required complex, creative thinking to solve tricky, interesting problems. It was perfect for me. I have continued to learn and grow through my classes, and hope to one day be on the cutting edge of computer science research, helping to progress the field.
+        </div>
+        <div>
+            <b>LANGUAGES</b>
+            <br>
+            Javascript
+            <br>
+            Python
+            <br> 
+            Java
+            <br> 
+            C
+            <br>
+            SQL
+            <br>
+            <b>CONCEPTS</b>
+            <br>
+            Data Structures
+            <br> 
+            Algorithms
+            <br>
+            Machine Learning
+        </div>
+        <div>
+            <br>
+            ⯁⯁⯁⯁⯁
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            <br>
+            ⯁⯁⯁⯁<span style="opacity: 25%;">⯁</span>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+            <br>
+            ⯁⯁⯁<span style="opacity: 25%;">⯁⯁</span>
+        </div>
     </div>
 </body>
-
 </html>
