@@ -1,0 +1,8 @@
+Model Information:
+* title:	Furnished suburban house
+* source:	https://sketchfab.com/3d-models/furnished-suburban-house-81b8852c18764008acd450bbd0929aa9
+* author:	anDDDres (https://sketchfab.com/anDDDres)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
