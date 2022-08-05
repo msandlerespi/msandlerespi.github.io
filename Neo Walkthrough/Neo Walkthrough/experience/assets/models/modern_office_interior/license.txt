@@ -1,0 +1,8 @@
+Model Information:
+* title:	Modern Office Interior
+* source:	https://sketchfab.com/3d-models/modern-office-interior-a95a81f32bb1461da296d1e2351e7093
+* author:	MD Ashfaq Bin Arif (https://sketchfab.com/tafar165)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
