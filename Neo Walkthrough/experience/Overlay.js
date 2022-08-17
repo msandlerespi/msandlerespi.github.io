@@ -1,13 +1,11 @@
 import * as THREE from './three.js/three.module.js'
 
-// so we need a div called overlay. in it should be a div called selectors, a div called hotspots, and a div called views.
-// we should add selectors to the overlay and options to the selectors. Options should not be a part of the selector constructor tbh
-// we should add hotspots to the overlay
-// we should add views to the overlay
-// the overlay should take care of getting elements where they belong. Perhaps the overlay could be responsible for generating all html (which could help with the issue of wanting reusable options, since each option would not store an html element)
-// i think selectors should have an update function that checks distance that can be called by the overlay update function
 export class Overlay {
-    constructor(renderer, user) {
+    /**
+     * @param { THREE.Camera } camera - The camera
+     * @param { THREE.WebGLRenderer } renderer - The renderer
+     */
+    constructor(camera, renderer) {
         let style = document.createElement('style');
         style.textContent = `
             #overlay {
@@ -111,20 +109,17 @@ export class Overlay {
 
             .hotspot {
                 background: lightgray;
-                opacity: 50%;
                 position: absolute;
                 transform: translate(-50%, -50%);
                 cursor: default;
                 padding: 20px;
                 border-radius: 5px;
-            }
-            .hotspot:hover {
-                opacity: 100%;
+                transition: opacity .5s;
             }
         `;  
         document.head.appendChild(style);
 
-        this.user = user;
+        this.camera = camera;
 
         this.overlay = document.createElement('div');
         this.overlay.id = 'overlay';
@@ -175,7 +170,6 @@ export class Overlay {
     }
     addSelector(selector) {
         this.selectors.push(selector);
-        this.selectorElem.append(selector.elem);
     }
     showSelector(selector) {
         if(!this.selectors.includes(selector)) return "invalid selector";
@@ -205,15 +199,37 @@ export class Overlay {
     addView(view) {
         this.views.push(view);
         this.viewElem.append(view.elem);
-        view.user = this.user;
+        view.camera = this.camera;
+        view.addEventListener('enabled', () => {
+            for(let i = 0; i < this.views.length; i++) {
+                if(this.views[i] !== view) {
+                    console.log(this.views[i]);
+                    this.views[i].control.enabled = false;
+                }
+            }
+        })
+    }
+    add(obj) {
+        if(obj instanceof Selector) this.addSelector(obj);
+        if(obj instanceof Hotspot) this.addHotspot(obj);
+        if(obj instanceof View) this.addView(obj);
     }
 }
 
 export class Option {
-    constructor(name, image, onSelected) { // i think we may need an onDeselected
+    /**
+     * @param { string } name - The name of the option
+     * @param { string } image - A string specifying the CSS background of the option (ie. "#ff0000", "url(myurl.jpg)"", etc…)
+     * @param { Object } [options] - Optional parameters
+     * @param { Function } [options.onSelected] - The function to run when the option is selected. Function should accept the object being edited as input. Defaults to a function that applies the specified image to the model
+     * @param { Function } [options.onDeselected] - The function to run when the option is deselected. Function should accept the object being edited as input
+     */
+    constructor(name, image, options) { // i think we may need an onDeselected
         this.name = name; // name of the option
         this.image = image;
-        this.onSelected = onSelected || this.getDefaultFunction(image); // the function to be run when selected, accepting a mesh as input (this allows for options to be reused by different meshes)
+        options = options || {}
+        this.onSelected = options.onSelected || this.getDefaultFunction(image); // the function to be run when selected, accepting a mesh as input (this allows for options to be reused by different meshes)
+        this.onDeselected = options.onDeselected;
     }
     clone() {
         return new Option(this.name, this.image, this.onSelected, this.active);
@@ -225,7 +241,7 @@ export class Option {
         elem.className = 'option';
     }
     getDefaultFunction(image) {
-        // The default function takes an object as an input, and adjusts either the color or texture of that object depending on what was input in the image category
+        // The default function takes an object as an input and adjusts either the color or texture of that object depending on what was input in the image parameter
         if(image.substring(0, 4) === 'url(') {
             let url = image.substring(4, image.length - 1);
             let loader = new THREE.TextureLoader();
@@ -238,20 +254,31 @@ export class Option {
             return (obj) => {
                 obj.material.color = color;
             }
+        } else {
+            // Throw error, invalid image for default function
         }
     }
 }
 export class Selector {
-    constructor(object, distance) {
-        this.options = []; // an array of option objects
-        this.object = object; // the object to which the options apply
-        this.distance = distance; // the radius from the object within which this selector tab should be usable
+    /**
+     * @param { THREE.Object3D } object - The object to which the options apply
+     * @param { Number } distance - The maximum distance the user can be from the target object at which the selector will display
+     * @param { Option[] } [options] - The array of options this selector provides
+     */
+    constructor(object, distance, options) {
+        this.object = object; 
+        this.distance = distance; 
 
         this.elem = document.createElement('div');
         this.elem.className = 'tab';
         this.optionElem = document.createElement('div');
         this.optionElem.className = 'options';
         this.elem.append(this.optionElem);
+        
+        this.options = []; // an array of option objects
+        if(options) {
+            this.addOptions(options);
+        }
     }
     addOption(option) {
         this.options.push(option);
@@ -266,7 +293,12 @@ export class Selector {
         }
 
         elem.addEventListener('click', () => {
-            Array.from(this.optionElem.children).forEach(child => { Option.makeInactive(child) });
+            Array.from(this.optionElem.children).forEach(child => {
+                if(child !== option) { 
+                    Option.makeInactive(child);
+                    if(child.onDeselected) child.onDeselected(this.object);
+                }
+            });
             Option.makeActive(elem);
             option.onSelected(this.object);
         })
@@ -285,43 +317,70 @@ export class Selector {
 }
 
 export class Hotspot {
-    constructor(position, radius, content) {
+    /**
+     * @param { THREE.Vector3 } position - The position of the hotspot
+     * @param { boolean } content - The content of the hotspot
+     * @param { Object } [options] - Optional parameters
+     * @param { Number } [options.distance] - The maximum distance the user can be from the hotspot at which it will render
+     * @param { Function } [options.onClick] - The function that will be triggered when the hotspot is clicked
+     */
+    constructor(position, content, options ) {
         this.position = position;
-        this.radius = radius;
         this.content = content;
+        this.distance = options.distance;
 
         this.elem = document.createElement('div');
         this.elem.className = 'hotspot';
         this.elem.innerHTML = content;
+        if(options.onClick) this.elem.onclick = options.onClick;
     }
     update(camera, renderer) {
-        let canvas = renderer.domElement;
-        let screenPosition = this.position.clone().project(camera);
-        screenPosition.x = Math.round((0.5 + screenPosition.x / 2) * (canvas.width / window.devicePixelRatio));
-        screenPosition.y = Math.round((0.5 - screenPosition.y / 2) * (canvas.height / window.devicePixelRatio));
+        if(!this.distance || camera.position.distanceTo(this.position) < this.distance) {
+            this.elem.style.opacity = '1';
+            let canvas = renderer.domElement;
+            let screenPosition = this.position.clone().project(camera);
+            screenPosition.x = Math.round((0.5 + screenPosition.x / 2) * (canvas.width / window.devicePixelRatio));
+            screenPosition.y = Math.round((0.5 - screenPosition.y / 2) * (canvas.height / window.devicePixelRatio));
 
-        if(screenPosition.z < 1 && screenPosition.z > 0) {
-            this.elem.style.left = screenPosition.x + 'px';
-            this.elem.style.top = screenPosition.y + 'px';
+            if(screenPosition.z < 1 && screenPosition.z > 0) {
+                this.elem.style.left = screenPosition.x + 'px';
+                this.elem.style.top = screenPosition.y + 'px';
+            } else {
+                this.elem.style.left = '100000px';
+            }
         } else {
-            this.elem.style.left = '100000px';
+            this.elem.style.opacity = '0';
         }
     }
 }
 
-export class View { // in the future we may want this to have more options like control type (if you want an outside view of the building with orbit controls or something).
-    constructor(name, position) {
+export class View extends THREE.EventDispatcher { 
+    /**
+     * @param { string } name - The name of the view
+     * @param { THREE.Vector3 } position - The position of the view
+     * @param { Object } [options] - Optional parameters
+     * @param { THREE.Vector3 } [options.target] - The target of the camera at that view (good for orbit controls, setting the target to the orbit controls target for a natural transition)
+     * @param { Object } [options.control] - The active control at this view (ie. User, Orbit Controls, etc...). Note, whatever control is used must have a boolean parameter "enabled" in order for this to work. If your control has something different, consider adding such a parameter. If your control becomes enabled and disabled via a function, adding an "enable" setter to your control that calls said function based on the input boolean can be an effective strategy for making your control work.
+     */
+    constructor(name, position, options) {
+        super();
         this.name = name;
         this.position = position;
-        this.user = null;
+        this.target = options.target;
+        this.control = options.control;
+        this.camera = null;
 
         this.elem = document.createElement('div');
         this.elem.innerHTML = name;
         this.elem.addEventListener('click', () => {
-            this.onClick(this.user);
+            this.onClick();
         })
     }
-    onClick(user) {
-        user.teleport(this.position);
+    onClick() {
+        this.camera.teleport(this.position, this.target);
+        if(this.control) {
+            this.control.enabled = true;
+            this.dispatchEvent({type: 'enabled'});
+        }
     }
 }

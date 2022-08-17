@@ -5,15 +5,14 @@ import { DRACOLoader } from './three.js/loaders/DRACOLoader.js'
 import { ColladaLoader } from './three.js/loaders/ColladaLoader.js'
 import * as THREE from './three.js/three.module.js'
 
-export default class Model extends THREE.EventDispatcher {
+export default class Model extends THREE.Group {
     /**
-     * @param { Object } scene - The ThreeJS scene
      * @param { string } path - The file path of the model
-     * @param { string } type - The file type of the model
-     * @param { Object } [options] - optional parameters
-     * @param { boolean } [options.shadows=false] - Whether or not to make the model cast and recieve shadows; defaults to false
+     * @param { string } type - The file type of the model. Current options are FBX, GLB, OBJ, DRACO, and COLLADA
+     * @param { Object } [options] - Optional parameters
+     * @param { boolean } [options.shadows=false] - Whether or the model should cast and receive shadows
      */
-    constructor(scene, path, type, options) {
+    constructor(path, type, options) {
         super();
         let loader;
         switch(type) {
@@ -47,7 +46,7 @@ export default class Model extends THREE.EventDispatcher {
             if(model.scene) model = model.scene
             
             model.name = 'model';
-            scene.add(model)
+            this.add(model)
 
             if(!options.shadows) options.shadows = false
             model.traverse(mesh => {
