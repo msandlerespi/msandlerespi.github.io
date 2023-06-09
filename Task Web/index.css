@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+    font-family: 'Montserrat', sans-serif;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    filter: blur(.5px) contrast(1.01); /* stylization, kind of a film effect */
+}
+.node {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: black;
+    color: white;
+    border-radius: 50%;
+    user-select: none;
+    cursor: grab;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    transition: box-shadow .3s;
+}
+.node.selected {
+    z-index: 300;
+}
+.node:hover {
+    z-index: 310;
+}
+.node:active {
+    cursor: grabbing;
+}
+.node > .title {
+    width: 90%;
+    text-align: center;
+    background: none;
+    color: white;
+    border: 0;
+    cursor: inherit;
+    /* border-bottom: 1px solid white; */
+}
+.node.complete {
+    opacity: 0;
+    pointer-events: none;
+}
+#mode-complete:checked ~ #container > .node.complete {
+    pointer-events: all;
+    opacity: .2;
+}
+
+.project-node {
+    width: 200px;
+    height: 200px;
+    font-size: 24px;
+    cursor: default;
+}
+.project-node:active {
+    cursor: default;
+}
+
+#mode-line:checked ~ #container > .project-node:after {
+    content: "...you're good to go!" !important;
+}
+#mode-line:checked ~ #container > .project-node:not(.new-select-text):hover {
+    box-shadow: 0px 0px 0px 0px white;
+}
+#mode-line:checked ~ #container > .project-node:not(.new-select-text):after {
+    opacity: 0;
+    pointer-events: none;
+}
+.line {
+    position: absolute;
+    z-index: 50;
+    background: black;
+    height: 4px;
+    transform-origin: top left;
+    filter: blur(2.9px) contrast(15);
+    box-shadow: 0 0 0 10px white;
+    transition: all .3s;
+}
+.line:after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 50%;
+    transform: translate(-25%, -50%) rotate(45deg);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: black;
+}
+.line:before {
+    width: 100%;
+    height: 800%;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #ff000000;
+    transform: translateY(-50%);
+}
+
+#mode-move:not(:checked) ~ #container > .line {
+    box-shadow: 0 0 0 10px white;
+    filter: blur(2.9px) contrast(15) brightness(.8);
+}
+#mode-delete:checked ~ #container > .line:hover {
+    cursor: pointer;
+    background: red;
+}
+#container {
+    /* cursor: move; */
+    position: absolute;
+    /* width: 300%;
+    height: 300%;
+    left: -100vw;
+    height: -100vh; */
+    /* z-index: 10; */
+}
+#move-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    cursor: move;
+}
+
+#menu {
+    background: #eee;
+    z-index: 1000;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    /* transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(-90%); */
+}
+/* #menu:hover {
+    transform: translateY(0);
+} */
+.menu-item, .menu-item-3 {
+    border-radius: 50%;
+    background: black;
+    color: white;
+    font-size: 15px;
+}
+.menu-divider {
+    width: 1px;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 0 13px;
+
+}
+.menu-divider:after {
+    content: '';
+    width: 3px;
+    height: 100px;
+    position: absolute;
+    background: black;
+    top: -50px;
+    left: 0;
+}
+.menu-item-2 {
+    color: black;
+    font-size: 40px;
+}
+.menu-item-3 {
+    float: right;
+    margin: 10px 10px 10px 0px !important;
+}
+.menu-item, .menu-item-2, .menu-item-3 {
+    vertical-align: middle;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    margin: 10px 0px 10px 10px;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.menu-item:hover, .menu-item-2:hover, .menu-item-3:hover {
+    transform: translateY(-2px);
+}
+.cover {
+    z-index: 25;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #0003;
+    left: 0;
+    top: 0;
+    transition: all .3s;
+}
+#mode-move:checked ~ .cover {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#mode-delete:checked ~ #container > .node:hover { /* shouldnt work for projects */
+    box-shadow: 0 0 0 10px #ff000066;
+    cursor: pointer;
+}
+#mode-delete:checked ~ #container > .node:after { /* shouldnt work for projects */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 15px;
+    height: 15px;
+    font-size: 80px;
+    font-weight: bold;
+    background: #ff000066;
+    opacity: 0;
+    transition: all .3s;
+    box-shadow: 15px 0 #ff000066, 30px 0 #ff000066, -15px 0 #ff000066, -30px 0 #ff000066,
+    0 15px #ff000066, 0 30px #ff000066, 0 -15px #ff000066, 0 -30px #ff000066;
+}
+#mode-delete:checked ~ #container > .node:hover:after {
+    opacity: 1;
+}
+
+#mode-complete:checked ~ #container > .node:hover { /* shouldnt work for projects */
+    box-shadow: 0 0 0 10px #00ff0066;
+    cursor: pointer;
+}
+#mode-complete:checked ~ #container > .node:not(.complete):after { /* shouldnt work for projects */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 5px)) rotate(45deg);
+    width: 15px;
+    height: 15px;
+    font-size: 80px;
+    font-weight: bold;
+    background: #00ff0066;
+    opacity: 0;
+    transition: all .3s;
+    box-shadow: 0 15px #00ff0066, 0 -15px #00ff0066, 0 -30px #00ff0066, -15px 15px #00ff0066;;
+}
+#mode-complete:checked ~ #container > .node:hover:after {
+    opacity: 1;
+}
+
+#mode-line:checked ~ #container > .node:hover, #mode-line:checked ~ #container > .node.selected {
+    box-shadow: 0 0 0 10px #00bcd466;
+    cursor: pointer;
+}
+#mode-line:checked ~ #container > .node:after {
+    position: absolute;
+    content: 'To complete this...';
+    color: white;
+    background: #00bcd466;
+    width: 0px;
+    border-radius: 5px;
+    padding: 0px;
+    cursor: pointer;
+    left: 50%;
+    top: -15px;
+    transform: translate(-50%, -100%);
+    transition: all .3s;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#mode-line:checked ~ #container > .node.new-select-text:hover:after {
+    content: '...you must first complete this';
+    width: 240px;
+}
+#mode-line:checked ~ #container > .node:hover:after, #mode-line:checked ~ #container > .node.selected:after {
+    width: 150px;
+    padding: 10px;
+}
+
+#mode-complete:checked ~ #menu > #complete-task {
+    background: #00ff00;
+}
+#mode-delete:checked ~ #menu > #delete-task {
+    background: #ff0000;
+}
+#mode-line:checked ~ #menu > #add-line {
+    background: #00bcd4;
+}
+#mode-move:checked ~ #menu > #move-node {
+    background: white;
+    color: black;
+}
+#auto-save {
+    opacity: .2;
+}
+#mode-auto-save:checked ~ #menu > #auto-save {
+    opacity: 1;
+    animation: spin .5s;
+} 
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+.invisible {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.project-node.complete {
+    opacity: .2 !important;
+    pointer-events: all !important;
+}
+
+.project-node.complete ~ .node {
+    opacity: 0;
+    pointer-events: none;
+}
+.project-node.complete ~ .line {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#project-menu {
+    background: #eee;
+    box-shadow: inset 0 20px 10px -10px #0001;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    left: 0;
+    top: 55px;
+    transition: all .3s;
+    transform: translateX(calc(1px - 100%));
+    z-index: 500;
+}
+#project-menu:hover {
+    transform: translateX(0);
+}
+#project-menu:hover:after {
+    content: '◀'
+}
+#project-menu:after {
+    width: 20px;
+    height: 80px;
+    border-radius: 0 10px 10px 0;
+    content: '▶';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(100%, -50%);
+    background: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#project-menu > .title {
+    width: 100%;
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 20px;
+}
+#project-menu > .project {
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+    transition: all .3s;
+}
+#project-menu > .project:hover, #project-menu > .project.current {
+    background: white;
+    padding-left: 15px;
+}
+#project-menu > .project.current {
+    cursor: default;
+}
+#project-menu > .project.complete:after {
+    content: '✔';
+    margin-left: 5px;
+}
+#add-project {
+    position: absolute;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+    border-radius: 50%;
+    vertical-align: center;
+    align-content: center;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#add-project:hover {
+    transform: translateY(-3px);
+}
+
+#add-project:active {
+    transform: translateY(0px);
+}
+
+#details-page {
+    position: fixed;
+    width: 60vw;
+    height: 60vh;
+    left: 20vw;
+    top: 20vh;
+    background: white;
+    z-index: 1000;
+    padding: 30px;
+    border-radius: 30px;
+    opacity: 0;
+    pointer-events: none;
+}
+#mode-edit:checked ~ #details-page {
+    opacity: 1;
+    pointer-events: all;
+}
+#details-page > * {
+    display: block;
+    width: 100%;
+}
+#details-page > .title {
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    outline: none;
+}
+#details-page > .details {
+    height: calc(100% - 44px);
+    resize: none;
+    padding: 5px;
+}

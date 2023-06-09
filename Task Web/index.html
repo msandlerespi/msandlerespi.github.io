@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Web</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <input id="mode-move" checked type="radio" class="mode invisible" name="mode">
+    <input id="mode-line" type="radio" class="mode invisible" name="mode">
+    <input id="mode-complete" type="radio" class="mode invisible" name="mode">
+    <input id="mode-delete" type="radio" class="mode invisible" name="mode">
+    <input id="mode-edit" type="radio" class="mode invisible" name="mode">
+    <input id="mode-auto-save" type="checkbox" class="mode invisible">
+    <div id="menu">
+        <label for="mode-move" id="move-node" title="move tasks" class="menu-item">✥</label>
+        <label for="mode-line" id="add-line" title="connect tasks" class="menu-item">╱</label>
+        <label for="mode-complete" id="complete-task" title="complete a task" class="menu-item">✔</label>
+        <label for="mode-delete" id="delete-task" title="delete a task" class="menu-item">✖</label>
+        <div class="menu-divider"></div>
+        <label id="add-node" title="add a task" class="menu-item-2">+</label>
+        <label id="auto-save" for="mode-auto-save" title="toggle autosave" class="menu-item-3">↻</label>
+    </div>
+    <label class="cover" id="line-cover" for="mode-move"></label>
+    <div id="move-container"></div>
+    <div id="container">
+    </div>
+    <div id="project-menu">
+        <div class="title">Projects</div>
+        <div id="add-project">+</div>
+    </div>
+    <div id="details-page">
+        <input class="title" value="Task 1">
+        <textarea class="details" placeholder="Add a description of your task here.">To do this, we simply do this, that, and the other thing</textarea>
+    </div>
+</body>
+</html>
