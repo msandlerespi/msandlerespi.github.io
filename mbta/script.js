@@ -1,4 +1,4 @@
-import { CountUp } from './countUp.min.js';
+import { CountUp } from './countup.min.js';
 import { Odometer } from './odometer.min.js';
 document.addEventListener("DOMContentLoaded", () => {
   // zoomable map functionality
