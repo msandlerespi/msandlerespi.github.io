@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = document.querySelectorAll(`.clickable .stops circle${color ? '.' + color : ''}`).length;
     let percent = 100 * (visited / total);
     let currentPercent = elem.style.width ? parseFloat(elem.style.width) : 0;
-    let duration = Math.max((Math.abs(currentPercent - percent) / 10), 1);
+    let duration = Math.min(Math.max((Math.abs(currentPercent - percent) / 10), 1), 5);
 
     elem.style.transitionDuration = duration + 's';
     elem.style.width = percent + '%';

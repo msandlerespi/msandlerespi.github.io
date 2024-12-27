@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+  font-size: 1px;
+}
 
 body {
   margin: 0;
@@ -9,10 +12,13 @@ body {
   overflow: hidden;
   font-family: 'Montserrat';
   display: flex;
+  font-size: 16px;
 }
 
 .information {
-  padding: 2vw;
+  padding: max(2vw, 12px);
+  overflow: auto;
+  height: 100vh;
 }
 
 /* try this but with train colors: https://codepen.io/maddastic/pen/NBmyPL */
@@ -29,6 +35,7 @@ body {
   cursor: pointer;
   position: relative;
   transition: all 1s;
+  margin-right: 40px;
 
   background-clip: padding-box;
   border: 0px solid transparent;
@@ -73,9 +80,8 @@ body {
 
 
 .percent {
-  font-size: 40px;
+  font-size: 40rem;
   font-weight: bold;
-  margin-left: 40px;
   transform: translateY(7px);
   display: inline-block;
   color: yellow;
@@ -243,4 +249,30 @@ body {
 
 .zoomist-container .zoomist-zoomer-button.zoomist-zoomer-disabled {
   fill: #888;
+}
+
+@media screen and (max-width: 1080px) {
+  :root {
+    font-size: .8px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  body {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .zoomist-container {
+    height: unset;
+    aspect-ratio: unset;
+  }
+
+  .information {
+    height: unset;
+  }
 }
