@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #00010a;
+  color: white;
+  overflow: hidden;
+  font-family: 'Montserrat';
+  display: flex;
+}
+
+.information {
+  padding: 2vw;
+}
+
+/* try this but with train colors: https://codepen.io/maddastic/pen/NBmyPL */
+.calculate {
+  outline: none;
+  background: white;
+  font-family: 'Montserrat';
+  padding: 16px;
+  border-radius: 100px;
+  margin-top: 15px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 1s;
+
+  background-clip: padding-box;
+  border: 0px solid transparent;
+}
+
+.calculate:hover {
+  font-weight: 900;
+  border: 0px solid transparent;
+}
+
+.calculate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: 1px;
+  border-radius: inherit;
+  transition: all 1s;
+  background: repeating-linear-gradient(108deg, rgba(250, 45, 39, 1) 0%, rgba(250, 45, 39, 1) 20%, rgba(253, 138, 3, 1) 20%, rgba(253, 138, 3, 1) 40%, rgba(0, 129, 80, 1) 40%, rgba(0, 129, 80, 1) 60%, rgba(47, 93, 166, 1) 60%, rgba(47, 93, 166, 1) 80%, rgba(154, 156, 157, 1) 80%, rgba(154, 156, 157, 1) 100%);
+  animation: wiggle-background infinite alternate 3s ease-in-out;
+  filter: blur(10px);
+  opacity: 0.2;
+}
+
+.calculate:hover::before {
+  margin: -5px;
+  opacity: 1;
+}
+
+@keyframes wiggle-background {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: 20px;
+  }
+}
+
+
+.percent {
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 40px;
+  transform: translateY(7px);
+  display: inline-block;
+  color: yellow;
+}
+
+.stats-table {
+  padding: 35px 0px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 650px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 10px;
+}
+
+.progress {
+  font-weight: bold;
+}
+
+.progress-bar {
+  display: block;
+  height: 18px;
+  overflow: hidden;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-radius: 5px 0 0 0;
+  padding-right: 68px
+}
+
+.progress-bar span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, rgba(250, 45, 39, 0.67) 0%, rgba(250, 45, 39, 0.67) 20%, rgba(253, 138, 3, 0.67) 20%, rgba(253, 138, 3, 0.67) 40%, rgba(0, 129, 80, 0.67) 40%, rgba(0, 129, 80, 0.67) 60%, rgba(47, 93, 166, 0.67) 60%, rgba(47, 93, 166, 0.67) 80%, rgba(154, 156, 157, 0.67) 80%, rgba(154, 156, 157, 0.67) 100%);
+  background-size: 75px;
+  transition: all 1s ease-out;
+  position: relative;
+}
+
+.progress-bar span::after {
+  content: '';
+  position: absolute;
+  background: yellow;
+  display: block;
+  left: calc(100% - 3px);
+  aspect-ratio: 90/24.1;
+  height: 100%;
+  -webkit-mask-image: url(train.svg);
+  mask-image: url(train.svg);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+
+.stats-red .progress-bar span {
+  background: #FA2D27AA;
+}
+
+.stats-orange .progress-bar span {
+  background: #FD8A03AA;
+}
+
+.stats-green .progress-bar span {
+  background: #008150AA;
+}
+
+.stats-blue .progress-bar span {
+  background: #2F5DA6AA;
+}
+
+.stats-silver .progress-bar span {
+  background: #9A9C9DAA;
+}
+
+.stats-red .progress-bar span::after {
+  background: #FA2D27;
+}
+
+.stats-orange .progress-bar span::after {
+  background: #FD8A03;
+}
+
+.stats-green .progress-bar span::after {
+  background: #008150;
+}
+
+.stats-blue .progress-bar span::after {
+  background: #2F5DA6;
+}
+
+.stats-silver .progress-bar span::after {
+  background: #9A9C9D;
+}
+
+.zoomist-container {
+  position: relative;
+  height: 100vh;
+  aspect-ratio: 1;
+  float: right;
+}
+
+.zoomist-wrapper,
+.zoomist-image {
+  width: 100%;
+  height: 100%;
+}
+
+.clickable {
+  position: relative;
+  width: 100vmin;
+  height: 100vmin;
+}
+
+.clickable .stops > circle,
+.clickable .stops > rect,
+.clickable .stops > path {
+  position: relative;
+  fill: transparent;
+}
+
+.clickable .stops > circle + path {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  transition: all .3s;
+  pointer-events: none;
+}
+
+.clickable .stops > circle {
+  cursor: pointer;
+}
+
+.clickable .stops > .checked + path {
+  stroke-dashoffset: 0;
+}
+
+.visual {
+  position: absolute;
+  top: 0;
+  aspect-ratio: 1;
+  height: 100vmin;
+  object-fit: contain;
+}
+
+.zoomist-container .zoomist-zoomer {
+  background: #00010a;
+  transform-origin: right top;
+  bottom: 0;
+  top: unset;
+  transform: translateY(100%) rotate(90deg);
+}
+
+.zoomist-container .zoomist-zoomer-button,
+.zoomist-container .zoomist-zoomer-button.zoomist-zoomer-disabled {
+  background: transparent;
+  transform: rotate(-90deg);
+}
+
+.zoomist-container .zoomist-zoomer-button svg {
+  fill: white;
+}
+
+.zoomist-container .zoomist-zoomer-button.zoomist-zoomer-disabled {
+  fill: #888;
+}

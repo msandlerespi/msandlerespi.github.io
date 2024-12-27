@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css" />
+
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.umd.js"></script>
+    <script type="module" src="script.js"></script>
+  </head>
+
+  <body>
+    <div class="information">
+      <h1>How much of the MBTA have you been to?</h1>
+      <p>Check off the stations you've been to on the map of the MBTA to the right.</p>
+      <button class="calculate">CALCULATE</button><span class="percent"><span>0.00</span>%</span>
+      <div class="stats-table">
+        <div class="stats stats-total">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 144</span>
+        </div>
+        <div class="stats stats-red">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 29</span>
+        </div>
+        <div class="stats stats-orange">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 19</span>
+        </div>
+        <div class="stats stats-green">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 66</span>
+        </div>
+        <div class="stats stats-blue">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 12</span>
+        </div>
+        <div class="stats stats-silver">
+          <span class="progress-bar"><span></span></span>
+          <span class="progress"><span>0</span> / 29</span>
+        </div>
+      </div>
+    </div>
+    <div class="zoomist-container">
+      <div class="zoomist-wrapper">
+        <div class="zoomist-image">
+          <img class="visual" src="2013_unofficial_MBTA_subway_map_by_Michael_Kvrivishvili.png">
+
+          <svg class="clickable" xmlns="http://www.w3.org/2000/svg" width="2719" height="2719" fill="none"
+            viewBox="0 0 2719 2719">
+            <g class="Temp space for christmas">
+              <g class="stops">
+                <circle cx="2468.5" cy="386.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2443.5, 366.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2409.5" cy="445.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2384.5, 425.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2350.5" cy="504.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2325.5, 484.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2289.5" cy="565.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2264.5, 545.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2230.5" cy="624.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2205.5, 604.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2163.5" cy="691.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2138.5, 671.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2094.5" cy="760.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2069.5, 740.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2026.5" cy="828.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(2001.5, 808.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1957.5" cy="897.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(1932.5, 877.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1550.5" cy="760.5" r="13.5" fill="#10F" class="blue"></circle>
+                <path transform="translate(1525.5, 740.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="1032.5" r="19.5" fill="#10F" class="blue orange"></circle>
+                <path transform="translate(1797.5, 1012.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1066.5" cy="1516.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1041.5, 1496.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1014.5" cy="1568.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(989.5, 1548.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="964.5" cy="1618.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(939.5, 1598.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="914.5" cy="1668.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(889.5, 1648.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="866.5" cy="1716.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(841.5, 1696.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1346.5" cy="1236.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1321.5, 1216.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1279.5" cy="1303.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1254.5, 1283.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1185.5" cy="1253.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1160.5, 1233.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1125.5" cy="1193.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1100.5, 1173.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1219.5" cy="1363.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1194.5, 1343.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1166.5" cy="1416.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1141.5, 1396.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1118.5" cy="1464.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1093.5, 1444.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="821.5" cy="1761.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(796.5, 1741.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="773.5" cy="1809.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(748.5, 1789.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="934.5" cy="1266.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(909.5, 1246.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="882.5" cy="1318.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(857.5, 1298.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="832.5" cy="1368.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(807.5, 1348.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="781.5" cy="1418.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(756.5, 1398.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="730.5" cy="1469.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(705.5, 1449.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="680.5" cy="1520.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(655.5, 1500.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="628.5" cy="1571.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(603.5, 1551.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="527.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(502.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="466.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(441.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="404.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(379.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="344.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(319.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="282.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(257.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="216.5" cy="1614.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(191.5, 1594.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="733.5" cy="1127.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(708.5, 1107.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="772.5" cy="1088.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(747.5, 1068.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="816.5" cy="1052.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(791.5, 1032.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="889.5" cy="1053.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(864.5, 1033.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="930.5" cy="1087.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(905.5, 1067.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="968.5" cy="1125.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(943.5, 1105.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1079.5" cy="1147.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1054.5, 1127.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1036.5" cy="1104.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1011.5, 1084.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="994.5" cy="1062.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(969.5, 1042.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="952.5" cy="1020.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(927.5, 1000.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="908.5" cy="976.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(883.5, 956.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="868.5" cy="936.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(843.5, 916.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="816.5" cy="906.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(791.5, 886.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="757.5" cy="904.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(732.5, 884.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="696.5" cy="904.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(671.5, 884.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="636.5" cy="906.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(611.5, 886.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="586.5" cy="934.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(561.5, 914.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="543.5" cy="977.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(518.5, 957.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="502.5" cy="1018.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(477.5, 998.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="459.5" cy="1061.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(434.5, 1041.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="416.5" cy="1104.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(391.5, 1084.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="374.5" cy="1146.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(349.5, 1126.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="329.5" cy="1191.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(304.5, 1171.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="216.5" cy="1215.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(191.5, 1195.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="399.5" cy="1414.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(374.5, 1394.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="690.5" cy="1170.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(665.5, 1150.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="645.5" cy="1215.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(620.5, 1195.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="604.5" cy="1256.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(579.5, 1236.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="561.5" cy="1299.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(536.5, 1279.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="517.5" cy="1343.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(492.5, 1323.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="474.5" cy="1386.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(449.5, 1366.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="726.5" cy="1856.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(701.5, 1836.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1168.5" r="19.5" fill="#1EFF00" class="green silver"></circle>
+                <path transform="translate(1389.5, 1148.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1755.5" cy="557.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1730.5, 537.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1686.5" cy="488.5" r="13.5" fill="#1EFF00" class="green"></circle>
+                <path transform="translate(1661.5, 468.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="624.5" r="19.5" fill="#1EFF00" class="green orange purple"></circle>
+                <path transform="translate(1797.5, 604.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="760.5" r="19.5" fill="#1EFF00" class="green orange"></circle>
+                <path transform="translate(1797.5, 740.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1686.5" cy="896.5" r="19.5" fill="#1EFF00" class="green blue"></circle>
+                <path transform="translate(1661.5, 876.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1550.5" cy="1032.5" r="19.5" fill="#1EFF00" class="green red"></circle>
+                <path transform="translate(1525.5, 1012.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="181.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1797.5, 161.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="249.5" r="13.5" fill="#FF9500" class="orange purple"></circle>
+                <path transform="translate(1797.5, 229.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="317.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1797.5, 297.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="401.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1797.5, 381.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="485.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1797.5, 465.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1278.5" cy="1576.5" r="13.5" fill="#FF9500" class="orange purple"></circle>
+                <path transform="translate(1253.5, 1556.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1219.5" cy="1635.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1194.5, 1615.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1159.5" cy="1695.5" r="13.5" fill="#FF9500" class="orange purple"></circle>
+                <path transform="translate(1134.5, 1675.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1096.5" cy="1758.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1071.5, 1738.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1032.5" cy="1822.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(1007.5, 1802.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="974.5" cy="1880.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(949.5, 1860.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="919.5" cy="1935.5" r="13.5" fill="#FF9500" class="orange"></circle>
+                <path transform="translate(894.5, 1915.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="862.5" cy="1992.5" r="13.5" fill="#FF9500" class="orange purple"></circle>
+                <path transform="translate(837.5, 1972.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1550.5" cy="1304.5" r="19.5" fill="#FF9500" class="orange silver"></circle>
+                <path transform="translate(1525.5, 1284.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1440.5" r="19.5" fill="#FF9500" class="orange silver"></circle>
+                <path transform="translate(1389.5, 1420.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1957.5" cy="1439.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1932.5, 1419.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2028.5" cy="1510.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(2003.5, 1490.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2094.5" cy="1576.5" r="13.5" fill="#FF0004" class="red purple"></circle>
+                <path transform="translate(2069.5, 1556.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1415.5" cy="896.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1390.5, 876.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1278.5" cy="760.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1253.5, 740.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1210.5" cy="692.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1185.5, 672.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1143.5" cy="625.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1118.5, 605.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1083.5" cy="565.5" r="13.5" fill="#FF0004" class="red purple"></circle>
+                <path transform="translate(1058.5, 545.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1023.5" cy="505.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(998.5, 485.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="964.5" cy="446.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(939.5, 426.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1686.5" cy="1168.5" r="19.5" fill="#FF0004" class="red orange silver"></circle>
+                <path transform="translate(1661.5, 1148.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1822.5" cy="1304.5" r="19.5" fill="#FF0004" class="red silver purple"></circle>
+                <path transform="translate(1797.5, 1284.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1873.5" cy="1933.5" r="19.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1848.5, 1913.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2076.5" cy="1729.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(2051.5, 1709.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2231.5" cy="1713.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(2206.5, 1693.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2299.5" cy="1781.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(2274.5, 1761.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2365.5" cy="1847.5" r="13.5" fill="#FF0004" class="red purple"></circle>
+                <path transform="translate(2340.5, 1827.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2434.5" cy="1916.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(2409.5, 1896.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2459.5" cy="2069.5" r="13.5" fill="#FF0004" class="red purple"></circle>
+                <path transform="translate(2434.5, 2049.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2004.5" cy="1801.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1979.5, 1781.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1932.5" cy="1873.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1907.5, 1853.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1818.5" cy="1987.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1793.5, 1967.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1770.5" cy="2035.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1745.5, 2015.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1729.5" cy="2077.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1704.5, 2057.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1685.5" cy="2121.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1660.5, 2101.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1643.5" cy="2162.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1618.5, 2142.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1597.5" cy="2208.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1572.5, 2188.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1550.5" cy="2255.5" r="13.5" fill="#FF0004" class="red"></circle>
+                <path transform="translate(1525.5, 2235.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1882.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1862.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1839.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1819.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1797.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1777.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1755.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1735.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1711.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1691.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1669.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1649.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1627.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1607.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1585.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1565.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="1414.5" cy="1543.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1389.5, 1523.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2009.5" cy="1304.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(1984.5, 1284.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2061.5" cy="1304.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2036.5, 1284.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2111.5" cy="1304.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2086.5, 1284.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2336.5" cy="1058.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2311.5, 1038.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2336.5" cy="1023.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2311.5, 1003.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2336.5" cy="1006.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2311.5, 986.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2336.5" cy="974.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2311.5, 954.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2336.5" cy="930.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2311.5, 910.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2166.5" cy="1334.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2141.5, 1314.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2184.5" cy="1352.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2159.5, 1332.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2201.5" cy="1369.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2176.5, 1349.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2218.5" cy="1385.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2193.5, 1365.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2235.5" cy="1402.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2210.5, 1382.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2252.5" cy="1419.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2227.5, 1399.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+                <circle cx="2273.5" cy="1440.5" r="10.5" fill="#C9C9C9" class="silver"></circle>
+                <path transform="translate(2248.5, 1420.5)" d="M3 38C11.8333 26.8333 38.5 9 50.5 3" stroke="black"
+                  stroke-width="6" stroke-linecap="round"></path>
+              </g>
+            </g>
+            <defs>
+              <!-- <clipPath id="a" class="a">
+                <path fill="#fff" d="M0 0h2719v2719H0z" />
+              </clipPath>
+              <pattern id="b" width="1" height="1" class="b" patternContentUnits="objectBoundingBox">
+                <use href="#c" transform="scale(.0003)" />
+              </pattern> -->
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>
