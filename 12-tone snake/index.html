@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="libraries/jsmidgen.js"></script>
+    <script>
+      console.log('Midi loaded:', typeof Midi !== 'undefined');
+    </script>
+  </head>
+
+  <body>
+    <h1>TWELVE TONE SNAKE</h1>
+    <p>Use arrow keys to move. Collect red blocks to grow. Don't bite your tail!</p>
+    <div class="wrapper">
+      <script src="sketch.js"></script>
+      <script src="snake.js"></script>
+      <script src="grid.js"></script>
+      <canvas class="gamespace"></canvas>
+    </div>
+    <div class="matrix-buttons">
+      <button data-index="0" class="note c">C</button>
+      <button data-index="1" class="note cs">C#</button>
+      <button data-index="2" class="note d">D</button>
+      <button data-index="3" class="note ds">D#</button>
+      <button data-index="4" class="note e">E</button>
+      <button data-index="5" class="note f">F</button>
+      <button data-index="6" class="note fs">F#</button>
+      <button data-index="7" class="note g">G</button>
+      <button data-index="8" class="note gs">G#</button>
+      <button data-index="9" class="note a">A</button>
+      <button data-index="10" class="note as">A#</button>
+      <button data-index="11" class="note b">B</button>
+      <button class="back">←</button>
+    </div>
+    <button disabled class="start">Start</button>
+    <div class="death-screen" style="display: none;">
+      <h2>Game Over!</h2>
+      <button class="play-again">Play Again</button>
+      <button class="download-midi">Download MIDI</button>
+    </div>
+  </body>
+
+</html>
