@@ -1,9 +1,9 @@
 let bounces = [3.1, 3.6, 4.03, 4.43, 4.76, 5.06, 5.36, 5.6, 5.8, 6.0, 6.16, 6.33, 6.46, 6.6, 6.7, 6.8, 6.86, 6.93, 7.0]
 let bounceDurations = [];
-for (let i = 1; i < bounces.length; i++) bounceDurations.push((bounces[i] - bounces[i - 1]) * 1000);
+for (let i = 1; i < bounces.length; i++) bounceDurations.push((bounces[i] - bounces[i - 1]) * 1000 - 20);
 let numBounces = bounceDurations.length;
 let averageDuration = bounceDurations.reduce((acc, val) => acc + val, 0) / numBounces;
-
+alert("Press OK to accept audio")
 document.addEventListener("DOMContentLoaded", () => {
   let video = document.querySelector('video');
   video.preservesPitch = true;
