@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  align-items: start;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding-left: 20px;
+  gap: 10px;
+}
+
+video {
+  width: 65%;
+}
