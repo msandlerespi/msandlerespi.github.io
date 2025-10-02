@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Analysis Tool</title>
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+
+    <script src="audioScripts/audio-utils.js" defer></script>
+
+    <script src="script.js"></script>
+    <script src="audioScripts/app.js"></script>
+    <script src="videoScripts/app.js" type="module"></script>
+
+    <script src="videoScripts/scd.min.js"></script>
+    <script src="videoScripts/lap.js"></script>
+    <script src="videoScripts/faceAnalysis.js" type="module"></script>
+    <script src="videoScripts/movementAnalysis.js" type="module"></script>
+  </head>
+
+  <body>
+    <div class="intro">
+      <h1>DJ Analysis Tool</h1>
+      <p>Hello! You have found my DJ analysis tool. The purpose of this tool is to make it easy for
+        people to extract and compare data from musical performances using a plethora of AI-based
+        analysis tools (namely, Audio Data with various <a href="https://essentia.upf.edu/models/">Essentia.js
+          models</a>, Facial Expressions with <a
+          href="https://justadudewhohacks.github.io/face-api.js/docs/index.html">face-api.js</a>, and <a
+          href="https://github.com/tensorflow/tfjs-models/tree/master/pose-detection">Pose Detection from tfjs</a> for
+        motion detection). This project is intended as
+        a tool to collect data on DJ set videos (like <a href="https://www.youtube.com/boilerroom">Boiler
+          Room</a>) in order to compare audience energy to musical decisions made by the DJ.</p>
+    </div>
+    <div class="request">
+      <div class="upload">
+        <label for="file-upload" class="upload">Click to upload video file</label>
+        <input id="file-upload" type="file">
+      </div>
+      <div class="settings _2" id="audio-metrics">
+        <input checked id="label" class="qual" type="checkbox">
+        <label for="label">Label</label>
+        <input checked id="bpm" class="quant" type="checkbox">
+        <label for="bpm">BPM</label>
+        <input checked id="danceability" class="quant" type="checkbox">
+        <label for="danceability">Danceability</label>
+      </div>
+      <div class="settings" id="video-metrics">
+        <input checked id="facial-valence" class="quant" type="checkbox">
+        <label for="facial-valence">Facial Valence</label>
+        <input checked id="motion" class="quant" type="checkbox">
+        <label for="motion">Motion</label>
+      </div>
+      <div class="submit">
+        <button disabled>ANALYZE<span>➯</span></button>
+      </div>
+    </div>
+    <div class="results" style="display: none;">
+      <div class="player">
+        <video controls></video>
+      </div>
+      <div class="overview loading">
+        Analyzing
+      </div>
+      <div class="graph">
+        <div class="quant-mods">
+          <input type="checkbox" id="norm">
+          <label for="norm">Normalize</label>
+          <input type="checkbox" id="avg">
+          <label for="avg">Smooth</label>
+        </div>
+        <canvas id="timepoints-graph"></canvas>
+        <button class="download-csv">Downlaod CSV</button>
+      </div>
+      <div class="graph">
+        <canvas id="labels-graph"></canvas>
+        <button class="download-csv">Downlaod CSV</button>
+      </div>
+    </div>
+    <div class="hidden">
+      <video id="analysis-input" muted></video>
+    </div>
+  </body>
+
+</html>
