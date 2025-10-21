@@ -320,7 +320,9 @@ function convertChartDataToCSV(args) {
   for (let i = 0; i < data.length; i++) {
     result += columnDelimiter;
     let val = data[i];
-    if (args.callback) val = args.callback(val);
+    try {
+      if (args.callback) val = args.callback(val);
+    } catch (error) { }
     result += val;
   }
   result += lineDelimiter;
