@@ -36,13 +36,13 @@
           href="https://justadudewhohacks.github.io/face-api.js/docs/index.html">face-api.js</a>, and <a
           href="https://github.com/tensorflow/tfjs-models/tree/master/pose-detection">Pose Detection from tfjs</a> for
         motion detection). This project is intended as
-        a tool to collect data on DJ set videos (like <a href="https://www.youtube.com/boilerroom">Boiler
+        a tool for collecting data from DJ set videos (like <a href="https://www.youtube.com/boilerroom">Boiler
           Room</a>) in order to compare audience energy to musical decisions made by the DJ.</p>
     </div>
     <div class="request">
       <div class="upload">
         <label for="file-upload" class="upload">Click to upload video file</label>
-        <input id="file-upload" type="file">
+        <input id="file-upload" type="file" accept="video/mp4,video/x-m4v,video/*">
       </div>
       <div class="settings _2" id="audio-metrics">
         <input checked id="label" class="qual" type="checkbox">
@@ -51,6 +51,14 @@
         <label for="bpm">BPM</label>
         <input checked id="danceability" class="quant" type="checkbox">
         <label for="danceability">Danceability</label>
+        <input checked id="mood_happy" class="quant" type="checkbox">
+        <label for="mood_happy">Happy</label>
+        <input checked id="mood_sad" class="quant" type="checkbox">
+        <label for="mood_sad">Sad</label>
+        <input checked id="mood_relaxed" class="quant" type="checkbox">
+        <label for="mood_relaxed">Relaxed</label>
+        <input checked id="mood_aggressive" class="quant" type="checkbox">
+        <label for="mood_aggressive">Aggressive</label>
       </div>
       <div class="settings" id="video-metrics">
         <input checked id="facial-valence" class="quant" type="checkbox">

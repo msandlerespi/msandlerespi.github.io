@@ -226,8 +226,9 @@ body {
 }
 
 .hidden {
-  // opacity: 0;
-  // visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
   position: absolute;
   pointer-events: none;
 }

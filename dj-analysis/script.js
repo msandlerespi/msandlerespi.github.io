@@ -167,10 +167,12 @@ document.addEventListener("DOMContentLoaded", () => {
     audioFile = uploader.files[0];
     upload = URL.createObjectURL(audioFile);
     uploaderLabel.innerHTML = 'Loaded ' + audioFile.name;
-    submitButton.disabled = false;
 
     videoPlayer.src = upload;
     analysisVideoPlayer.src = upload;
+    analysisVideoPlayer.addEventListener('loadeddata', e => {
+      submitButton.disabled = false;
+    })
   })
 
   submitButton.addEventListener('click', () => {
